@@ -3,10 +3,32 @@ img {
     height: auto;
 }
 
-#firstAside {
+/* #firstAside {
     float:left;
+    position: relative;
 }
 
 #secondAside {
     float: right;
+    position: relative;
+} */
+
+.grid-container {
+    display: grid;
+    column-gap: 50px;
+}
+
+.left-bar {
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.mid-bar {
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.right-bar {
+    grid-column-start: 3;
+    grid-column-end: 3;
 }

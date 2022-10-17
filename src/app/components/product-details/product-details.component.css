@@ -1,0 +1,12 @@
+img {
+    width: 500px;
+    height: auto;
+}
+
+#firstAside {
+    float:left;
+}
+
+#secondAside {
+    float: right;
+}

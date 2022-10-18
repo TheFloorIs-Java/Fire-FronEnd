@@ -28,6 +28,7 @@ import { DarkModeToggle } from './components/dark-mode-toggle.component';
     CheckoutComponent,
     ReviewComponent,
     DisplayProductsComponent,
+    DisplayReviewsComponent,
     DarkModeToggle
   ],
   imports: [

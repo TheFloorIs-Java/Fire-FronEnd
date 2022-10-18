@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: "home", component: DisplayProductsComponent },
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
-  { path: "review", component: ReviewComponent }
+  { path: "review", component: ReviewComponent },
   { path: "product", component: ProductDetailsComponent}
 ];
 

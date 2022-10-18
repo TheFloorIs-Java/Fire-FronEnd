@@ -1,4 +1,3 @@
-import { UserInfo } from "os";
 import { Product } from "./product";
 
 export class Review {

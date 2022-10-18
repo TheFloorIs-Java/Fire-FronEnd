@@ -14,8 +14,7 @@ export class DisplayReviewsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
-
   }
+
 
 }

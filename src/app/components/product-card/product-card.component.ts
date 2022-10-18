@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -20,7 +21,7 @@ export class ProductCardComponent implements OnInit{
 
   @Input() productInfo!: Product;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
   
   ngOnInit(): void {
     this.subscription = this.productService.getCart().subscribe(
@@ -68,8 +69,16 @@ export class ProductCardComponent implements OnInit{
       
   }
 
+
+  addReview(id:number){
+    this.router.navigate(['review']);
+
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
 
 }

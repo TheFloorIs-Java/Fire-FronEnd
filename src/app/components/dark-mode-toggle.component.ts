@@ -9,7 +9,9 @@ import { Observable } from "rxjs";
       [checked]="darkMode$ | async"
       (change)="onToggle()"
     />`,
+
   })
+  
   export class DarkModeToggle {
     darkMode$: Observable<boolean> = this.darkModeService.darkMode$;
     constructor(private darkModeService: DarkModeService) {}

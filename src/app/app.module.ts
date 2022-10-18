@@ -24,9 +24,8 @@ import { DisplayReviewsComponent } from './components/display-reviews/display-re
     ProductCardComponent,
     CartComponent,
     CheckoutComponent,
-    DisplayProductsComponent,
     ReviewComponent,
-    DisplayReviewsComponent
+    DisplayProductsComponent
   ],
   imports: [
     BrowserModule,

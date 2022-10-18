@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-card',
@@ -77,6 +78,10 @@ export class ProductCardComponent implements OnInit{
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  goToProductDetail(productInfo: Product) {
+    this.router.navigate(['/product'], {queryParams: {id: productInfo.id}});
   }
 
 

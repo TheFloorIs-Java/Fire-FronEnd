@@ -1,0 +1,17 @@
+<div class="grid-container">
+    <aside class="left-bar">
+        <img src="{{ product.image }}">
+    </aside>
+    <article class="mid-bar">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <button>Purchase</button>
+    </article>
+    <aside class="right-bar">
+        <section>
+            <p>Quantity: <span>{{ product.quantity }}</span></p>
+            <p>Price: <span>{{ product.price | currency: "USD":"symbol"}}</span></p>
+        </section>
+    </aside>
+</div>
+

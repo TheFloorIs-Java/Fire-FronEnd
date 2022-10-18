@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewComponent } from './components/review/review.component';
 import { DisplayReviewsComponent } from './components/display-reviews/display-reviews.component';
+//import { DarkModeService } from 'angular-dark-mode';
+import { DarkModeToggle } from './components/dark-mode-toggle.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { DisplayReviewsComponent } from './components/display-reviews/display-re
     CartComponent,
     CheckoutComponent,
     ReviewComponent,
-    DisplayProductsComponent
+    DisplayProductsComponent,
+    DarkModeToggle
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { DisplayReviewsComponent } from './components/display-reviews/display-re
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

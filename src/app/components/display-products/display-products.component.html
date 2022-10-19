@@ -2,7 +2,6 @@
     <div class="row align-items-start">
        <div class="col" *ngFor="let product of allProducts">
             <app-product-card
-                [routerLink]="['/product', product.id]"
                 class="cardListItem"
                 [productInfo]="product"
             ></app-product-card> 

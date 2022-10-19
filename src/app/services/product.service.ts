@@ -7,12 +7,20 @@ import { Cart } from '../models/cart';
 
 
 
+// interface deleteItem {
+//   productId: number;
+//   productName: String;
+//   productDescription: String;
+//   quantity: number;
+
+// }
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private productUrl: string = "/api/product/";
+  private productUrl: string = "/api/product/git";
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +31,7 @@ export class ProductService {
   public getSingleProduct(id: number): Observable<Product> {
     return this.http.get<Product>(environment.baseUrl+ this.productUrl+id, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
+
 
   public purchase(products: {id:number, quantity:number}[]): Observable<any> {
     const payload = JSON.stringify(products);

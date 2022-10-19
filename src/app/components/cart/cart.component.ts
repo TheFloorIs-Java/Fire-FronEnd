@@ -11,6 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartComponent implements OnInit {
 
+
+  //  deletedItem : Array<DeleteItemService> = [];
   products: { 
     product: Product,
     quantity: number
@@ -32,6 +34,11 @@ export class CartComponent implements OnInit {
     );
   }
 
+    deleteItem(product:any): void {
+    this.products=this.products.filter(p => {return p!== product;})
+  }
+
+
   emptyCart(): void {
     let cart = {
       cartCount: 0,
@@ -41,5 +48,7 @@ export class CartComponent implements OnInit {
     this.cService.setCart(cart);
     this.router.navigate(['/home']);
   }
+
+
 
 }

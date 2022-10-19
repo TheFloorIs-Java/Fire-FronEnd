@@ -16,6 +16,7 @@
     </nav> -->
 </div>
      <form class="form-inline">
+        <button (click)="toggleTheme()">Dark Mode</button>
         <button class="btn btn-light" [routerLink]="['/cart']">
             Cart
             <span class="badge badge-info">{{cartCount}}</span>

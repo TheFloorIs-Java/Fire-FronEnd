@@ -1,14 +1,6 @@
-<p>display-reviews works!</p>
-
-
-
-<div class="container">
-    <div class="row align-items-start">
-       <div class="col" *ngFor="let review of allReviews">
-            
-                class="cardListItem"
-                [reviewInfo]="review"
-           
-        </div> 
-    </div>
-</div>
+<div  *ngFor = "let reviews of allReviews">
+    
+    
+    <li> {{reviews.review}} </li>  
+ </div> 
+ 

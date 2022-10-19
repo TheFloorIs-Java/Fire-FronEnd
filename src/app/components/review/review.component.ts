@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
 import { Review } from 'src/app/models/review';
 import { ReviewService } from 'src/app/services/review.service';
+import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-review',
@@ -8,16 +11,34 @@ import { ReviewService } from 'src/app/services/review.service';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-  allReviews:Review[] = [];
   @Input()
-  reviewInfo : Review[] = []  ;
-  constructor(private rService: ReviewService) { }
+  allReviews: Array<Review> = [];
+  product!: Product;
+  user!: User;
+  reviewInfo! : Review   ;
+  @Input()
+  reviewInput : string ="";
+
+  constructor(private rService: ReviewService, private http: HttpClient) { }
 
   ngOnInit(): void {
+
+    
   }
 
- addReview(){
-  this.rService.addReview();
+ addReview(): void {
+      this.product.id = 1;
+      this.reviewInfo = new Review(1,this.product, this.user,this.reviewInput,)
+       
+        console.log(this.reviewInfo) ;  
+       this.rService.addReview(this.reviewInfo);
+ 
+
+ }
+
+ getAllReviewsByProuct()
+ {
+
  }
 
 }

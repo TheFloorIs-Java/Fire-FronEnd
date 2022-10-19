@@ -1,18 +1,21 @@
-import { UserInfo } from "os";
+
 import { Product } from "./product";
+import { User } from "./user";
 
 export class Review {
    
-    id: number;
-   
-    review: string;
-     product :Product
+    id: number = 0;
+     product :Product;
+     user: User;
+     review: string;
     
 
-    constructor (id: number, review: string, product :Product ) {
+    constructor ( id:number, product :Product, user:User,review: string ) {
+        
         this.id = id;
-        this.review =  review;
         this.product = product;
+        this.user = user;
+        this.review =  review;
     }
 
 }

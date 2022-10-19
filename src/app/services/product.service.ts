@@ -18,7 +18,7 @@ interface Cart {
 })
 export class ProductService {
 
-  private productUrl: string = "/api/product";
+  private productUrl: string = "/api/product/";
 
   private _cart = new BehaviorSubject<Cart>({
     cartCount: 0,
@@ -42,12 +42,8 @@ export class ProductService {
     return this.http.get<Product[]>(environment.baseUrl+this.productUrl, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
-  // public addToCart(): void {
-  //   this._cart$.
-  // }
-
   public getSingleProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(environment.baseUrl+id);
+    return this.http.get<Product>(environment.baseUrl+ this.productUrl+id, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
   public purchase(products: {id:number, quantity:number}[]): Observable<any> {

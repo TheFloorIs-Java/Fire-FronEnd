@@ -4,7 +4,7 @@
 *::before{margin: 0;}
 :root{
   --bg-color: white;
-  --text-color: black;
+  --text-color: rgba(36, 36, 42, 0.969);
 }
 
 [data-theme="dark"]{

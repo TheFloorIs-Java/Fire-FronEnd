@@ -3,15 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
+import { Cart } from '../models/cart';
 
-interface Cart {
-  cartCount: number;
-  products: {
-    product: Product,
-    quantity: number
-  }[];
-  totalPrice: number;
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,22 +13,6 @@ interface Cart {
 export class ProductService {
 
   private productUrl: string = "/api/product/";
-
-  private _cart = new BehaviorSubject<Cart>({
-    cartCount: 0,
-    products: [],
-    totalPrice: 0.00
-  });
-
-  private _cart$ = this._cart.asObservable();
-
-  getCart(): Observable<Cart> {
-    return this._cart$;
-  }
-
-  setCart(latestValue: Cart) {
-    return this._cart.next(latestValue);
-  }
 
   constructor(private http: HttpClient) { }
 

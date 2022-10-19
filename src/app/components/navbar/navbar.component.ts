@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
-
+import { DarkModeToggle } from '../dark-mode-toggle.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -31,4 +31,7 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
+  dark(){
+    this.dark
+  }
 }

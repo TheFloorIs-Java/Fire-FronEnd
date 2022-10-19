@@ -2,11 +2,11 @@
 *::after,
 *::before{margin: 0;}
 :root{
-  --bg-color: white;
+  --bg-color: rgb(250, 249, 224);
   --text-color: black;
 }
 
 [data-theme="dark"]{
---bg-color:black;
---text-color: white;
+--bg-color:rgba(21, 19, 19, 0.688);
+--text-color: teal;
 }

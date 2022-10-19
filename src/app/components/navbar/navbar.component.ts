@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit{
   subscription!: Subscription;
 
   constructor(private authService: AuthService, private router: Router, //private productService: ProductService,
-              private cService: CartService) { }
+              private cService: CartService) { this.detectColorScheme}
   
   ngOnInit(): void {
     this.subscription = this.cService.getCart().subscribe(
@@ -33,7 +33,15 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
-  dark(){
-    this.dark
+  darkMode= false;
+  detectColorScheme(){
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark').matches){
+      this.darkMode=true;
+      document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
+    }
+  }
+  toggleTheme(){
+    this.darkMode= !this.darkMode;
+    document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
   }
 }

@@ -47,6 +47,14 @@ a{
     border-radius: 2px;
 }
 
+.dark_btn {
+    font-size: 1rem;
+    background-color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+}
+
 .main_btn {
     font-size: 1rem;
     background-image: linear-gradient(to top, orange 0%, coral 100%);

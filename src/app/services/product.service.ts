@@ -20,7 +20,7 @@ import { Cart } from '../models/cart';
 })
 export class ProductService {
 
-  private productUrl: string = "/api/product/git";
+  private productUrl: string = "/api/product";
 
   constructor(private http: HttpClient) { }
 

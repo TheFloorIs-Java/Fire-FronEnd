@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+   
     padding: 0;
     scroll-behavior: smooth;
    
@@ -28,7 +29,6 @@
     border-radius: 20px;
     box-shadow: 0px 10px 40px white;
    
-    
    }
 
    .Header{
@@ -60,6 +60,7 @@
 
 .btn-danger{
     margin-left: 4%;
+   
     background-image: linear-gradient(to top, orange 0%, coral 100%);
     font-size: 1rem;
     padding: 5px 10px;

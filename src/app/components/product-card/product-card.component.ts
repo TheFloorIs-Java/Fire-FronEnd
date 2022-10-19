@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 
@@ -22,10 +24,10 @@ export class ProductCardComponent implements OnInit{
 
   @Input() productInfo!: Product;
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
   
   ngOnInit(): void {
-    this.subscription = this.productService.getCart().subscribe(
+    this.subscription = this.cService.getCart().subscribe(
       (cart) => {
         this.cartCount = cart.cartCount;
         this.products = cart.products;
@@ -35,39 +37,22 @@ export class ProductCardComponent implements OnInit{
   }
 
   addToCart(product: Product): void {
-
-    let inCart = false;
-
-    this.products.forEach(
-      (element) => {
-        if(element.product == product){
-          ++element.quantity;
-          let cart = {
-            cartCount: this.cartCount + 1,
-            products: this.products,
-            totalPrice: this.totalPrice + product.price
-          };
-          this.productService.setCart(cart);
-          inCart=true;
-          return;
-        };
-      }
-    );
-
-    if(inCart == false){
-      let newProduct = {
-        product: product,
-        quantity: 1
-      };
-      this.products.push(newProduct);
-      let cart = {
-        cartCount: this.cartCount + 1,
-        products: this.products,
-        totalPrice: this.totalPrice + product.price
-      }
-      this.productService.setCart(cart);
+    let newCart: Cart = {
+      cartCount: 0,
+      products: [],
+      totalPrice: 0.00
+    };
+    newCart.products = this.products;
+    if (newCart.products.find(elem => elem.product.id === product.id)) {
+      console.log("Element found, updating quantity");
+      newCart.products[newCart.products.findIndex(elem => elem.product.id === product.id)].quantity++;
+    } else {
+      console.log("Element not found, adding to cart");
+      newCart.products.push({product: product, quantity: 1});
     }
-      
+    newCart.cartCount = this.cartCount + 1;
+    newCart.totalPrice = this.totalPrice + product.price;
+    this.cService.setCart(newCart);
   }
 
 

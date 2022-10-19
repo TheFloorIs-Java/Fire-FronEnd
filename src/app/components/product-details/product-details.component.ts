@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import {datepickerAnimation} from "ngx-bootstrap/datepicker/datepicker-animations";
+import { CartService } from 'src/app/services/cart.service';
+import { Cart } from 'src/app/models/cart';
 
 @Component({
   selector: 'app-product-details',
@@ -14,11 +16,20 @@ export class ProductDetailsComponent implements OnInit {
 
   product!: Product;
   product_id!: number;
+  subscription!: Subscription;
+  newCart: Cart = {
+    cartCount: 0, products: [], totalPrice: 0.0
+  }
 
-  constructor(private pService: ProductService, private route: ActivatedRoute) {
+  constructor(private pService: ProductService, private route: ActivatedRoute, private cService: CartService) {
     this.route.queryParams.subscribe(data => {
       this.product_id = data['id']
     });
+    this.subscription = this.cService.getCart().subscribe(
+      (cart) => {
+        this.newCart = cart
+      }
+    );
   }
   
   ngOnInit(): void {
@@ -31,6 +42,23 @@ export class ProductDetailsComponent implements OnInit {
       this.product = data;
       console.log(data);
     })
+  }
+
+  addToCart(product: Product) {
+    if (this.newCart.products.find(elem => elem.product.id === product.id)) {
+      console.log("Element found, updating quantity");
+      this.newCart.products[this.newCart.products.findIndex(elem => elem.product.id === product.id)].quantity++;
+    } else {
+      console.log("Element not found, adding to cart");
+      this.newCart.products.push({product: product, quantity: 1});
+    }
+    this.newCart.cartCount++;
+    this.newCart.totalPrice += product.price;
+    this.cService.setCart(this.newCart);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

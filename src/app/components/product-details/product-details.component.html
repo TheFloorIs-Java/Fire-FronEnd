@@ -5,13 +5,12 @@
     <article class="mid-bar">
         <h1>{{ product.name }}</h1>
         <p>{{ product.description }}</p>
-        
     </article>
     <aside class="right-bar">
         <section>
             <p>Quantity: <span>{{ product.quantity }}</span></p>
             <p>Price: <span>{{ product.price }}</span></p>
-            <button class="btn btn-outline-success">Add to Cart</button>
+            <button class="btn btn-outline-success" (click)="addToCart(product)">Add to Cart</button>
         </section>
     </aside>
 </div>

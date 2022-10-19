@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,21 +11,21 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartComponent implements OnInit {
 
-  products: {
+  products: { 
     product: Product,
     quantity: number
   }[] = [];
-  totalPrice!: number;
-  cartProducts: Product[] = [];
+  totalPrice!: number; 
+  cartProducts: Product[] = []; 
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
 
   ngOnInit(): void {
-    this.productService.getCart().subscribe(
+    this.cService.getCart().subscribe(
       (cart) => {
-        this.products = cart.products;
+        this.products = cart.products; // Get the elements from the subscribed cart
         this.products.forEach(
-          (element) => this.cartProducts.push(element.product)
+          (element) => this.cartProducts.push(element.product) // Move each element's product to a product array.
         );
         this.totalPrice = cart.totalPrice;
       }
@@ -37,7 +38,7 @@ export class CartComponent implements OnInit {
       products: [],
       totalPrice: 0.00
     };
-    this.productService.setCart(cart);
+    this.cService.setCart(cart);
     this.router.navigate(['/home']);
   }
 

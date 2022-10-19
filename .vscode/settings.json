@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/cb365af4-3e71-45c3-b49c-69d957b7f083/AppServices/subscriptions/cb365af4-3e71-45c3-b49c-69d957b7f083/resourceGroups/p3-fire-team/providers/Microsoft.Web/sites/fireshop",
+    "appService.deploySubpath": "."
+}

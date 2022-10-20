@@ -16,20 +16,23 @@ export class NavbarComponent implements OnInit, OnChanges{
   subscription!: Subscription;
   @Input() addItem!: number;
   constructor(private authService: AuthService, private router: Router,  private cService: CartService) {//private productService: ProductService,
-                this.detectColorScheme
-              }
-  
-  ngOnInit(): void {
-    // this.subscription = this.cService.getCart().subscribe(
-    //   (cart) => this.cartCount = cart.cartCount
-    // );
+                //this.detectColorScheme
       this.subscription = this.cService.getCartCount().subscribe(
           (count:number) => {
               this.cartCount = count;
               console.log("in ngOnInit"+ count);
           }
       );
-      //this.cService.getCartCount().subscribe(data  => this.cartCount = data);
+  }
+  
+  ngOnInit(): void {
+    // this.subscription = this.cService.getCart().subscribe(
+    //   (cart) => this.cartCount = cart.cartCount
+    // );
+      this.subscription = this.cService.getCartCountRef().subscribe(
+          (count:number) => this.cartCount = count
+      );
+      // this.cService.getCartCount().subscribe(data  => this.cartCount = data);
   }
 
   ngOnChanges(){

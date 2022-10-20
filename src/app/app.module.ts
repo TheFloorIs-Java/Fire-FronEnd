@@ -20,6 +20,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { UserComponent } from './components/user/user.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { UserComponent } from './components/user/user.component';
     DisplayReviewsComponent,
     DarkModeToggle,
     DisplayProductsComponent,
-    HomePageComponent
+    HomePageComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

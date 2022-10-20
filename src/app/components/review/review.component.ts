@@ -21,6 +21,7 @@ export class ReviewComponent implements OnInit {
   reviewInput : string ="";
   @Input()
   product_id:number = 0;
+  user_id : number = 0;
   constructor(private rService: ReviewService, private http: HttpClient, private pservice:ProductService) { }
 
   ngOnInit(): void {
@@ -29,7 +30,9 @@ export class ReviewComponent implements OnInit {
   }
 
  addReview(): void {
-       this.productInfo = new Product(1,"",0,"",0,"");
+  // HttpSession session = 
+  
+       this.productInfo = new Product(this.product_id,"",0,"",0,"");
       this.user = new User(1,"","","","");
       console.log(this.user);
       //  this.pservice.getSingleProduct(this.product_id)
@@ -45,13 +48,14 @@ export class ReviewComponent implements OnInit {
        
         console.log(this.reviewInfo) ;  
        this.rService.addReview(this.reviewInfo);
+       location.reload();
  
 
  }
 
- getAllReviewsByProuct()
- {
-
+ getUser() {
+ 
+   this.rService.
  }
-
+ 
 }

@@ -4,7 +4,7 @@ import { User } from "./user";
 
 export class Review {
    
-     id: number = 0;
+     id?: number  ;
      product :Product;
      user: User;
      review: string;

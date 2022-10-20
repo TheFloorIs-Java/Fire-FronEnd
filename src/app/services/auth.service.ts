@@ -8,11 +8,11 @@ import { DarkModeToggle } from '../components/dark-mode-toggle.component';
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   authUrl: string = `${environment.baseUrl}/auth`;
   loggedIn: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ) { }
 
   login(email: string, password: string): Observable<any> {
     const payload = {email:email, password:password};

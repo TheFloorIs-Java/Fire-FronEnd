@@ -5,22 +5,29 @@ import { environment } from 'src/environments/environment';
 
 import { Product } from '../models/product';
 import { Review } from '../models/review';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
    product !: Product ;
-   reviewrs !: Review;
+  //  reviewrs !: Review;
    allReviews : Review[] = [];
   constructor(private http: HttpClient) { 
 
   }
 
   addReview( reviewr:Review): void {
-  this.http.post<any>("http://localhost:8080/review/", 
-   { review:reviewr}).subscribe(()=>  console.log("review added"));
+  // this.http.post<Review>("http://localhost:8080/review/", 
+  this.http.post<Review>(environment.baseUrl+"/review/", 
+   reviewr,{headers: environment.headers, withCredentials: environment.withCredentials}).subscribe(()=>  console.log("review added"));
    
+  }
+
+
+  getUser():  Observable<User> {
+    return this.http.get<User>(environment.baseUrl+"/userInfo/");
   }
 
   getReview(id: number): Observable<Review[]> {

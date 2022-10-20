@@ -9,7 +9,7 @@
 }
 
 [data-theme="dark"]{   /*Darkmode theme */
---bg-color:black;
+--bg-color:rgba(20, 19, 19, 0.911);
 --text-color:rgb(208, 141, 40);
 }
 /* use these tags to allow switch */

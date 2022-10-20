@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 import { Product } from '../models/product';
 import { Review } from '../models/review';
 
@@ -10,6 +12,7 @@ import { Review } from '../models/review';
 export class ReviewService {
    product !: Product ;
    reviewrs !: Review;
+   allReviews : Review[] = [];
   constructor(private http: HttpClient) { 
 
   }
@@ -19,10 +22,18 @@ export class ReviewService {
    { review:reviewr}).subscribe(()=>  console.log("review added"));
    
   }
-  
-  
-  
 
+  getReview(id: number): Observable<Review[]> {
+    return this.http.get<Review[]>(environment.baseUrl+"/review/"+id);
+  }
+  
+ 
+  
+getAllReviews(id:number ) : Observable<Review[]> {
+  return this.http.get<Review[]>(environment.baseUrl+"/review/" +  id);
+  //.subscribe(data=> {this.allReviews =data ; console.log(this.allReviews)});
+  
+}
   
 
 }

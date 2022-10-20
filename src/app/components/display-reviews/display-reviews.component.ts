@@ -19,7 +19,10 @@ export class DisplayReviewsComponent implements OnInit {
   reviewInfo!:Review;
   allReviews:Review[]= [];
   
-  constructor(private http: HttpClient,private pService: ProductService, private route: ActivatedRoute) { 
+  constructor(private http: HttpClient,
+    private pService: ProductService,
+     private route: ActivatedRoute,
+     private rService: ReviewService)  { 
     this.route.queryParams.subscribe(data => {
       this.product_id = data['id']
     });
@@ -29,8 +32,10 @@ export class DisplayReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = new Product(this.product_id,"",0, "", 0, "" ) ;
-    
-    this.http.get<Review[]>("http://localhost:8080/review/" +  this.product).subscribe(data=> {this.allReviews =data ; console.log(this.allReviews)});
+    this.rService.getAllReviews(this.product_id).subscribe(data=> { 
+      this.allReviews= data ;
+    });
+   
     console.log(this.allReviews);
 
   }

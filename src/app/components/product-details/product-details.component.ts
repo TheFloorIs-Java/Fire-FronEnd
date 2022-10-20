@@ -19,9 +19,10 @@ export class ProductDetailsComponent implements OnInit {
   product!: Product;
   product_id!: number;
   subscription!: Subscription;
-  newCart: Cart = {
-    cartCount: 0, products: [], totalPrice: 0.0
-  }
+  // newCart: Cart = {
+  //   cartCount: 0, products: [], totalPrice: 0.0
+  // }
+
 
   gottenCart!: CartItem[];
 
@@ -31,7 +32,7 @@ export class ProductDetailsComponent implements OnInit {
     });
     this.subscription = this.cService.getCart().subscribe(
       (cart) => {
-        this.newCart = cart
+        //this.newCart = cart
       }
     );
   }
@@ -40,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.product_id+ "printed in ngONInit");
     this.getProduct(this.product_id);
     this.cService.getCartFromAPI().subscribe(cartitems => {
-      // this.gottenCart = cartitems;
+      //this.gottenCart = cartitems;
       console.log("This is the cart" +cartitems);
     });
   }
@@ -72,6 +73,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
+   }
 
 }

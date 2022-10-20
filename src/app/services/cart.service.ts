@@ -12,9 +12,7 @@ export class CartService {
 
   endpointURL: String;
 
-  constructor(private http: HttpClient) {
-    this.endpointURL = "/api/cart";
-  }
+
 
   /*
   * The BehaviorSubject representation of the cart used in the app.
@@ -43,6 +41,12 @@ export class CartService {
   private _cart$ = this._cart.asObservable();
   private cart$ = this.cart.asObservable();
   private cartCount$ = this.cartCount.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.endpointURL = "/api/cart";
+  }
+
+
   /*
   * Return the observable of the BehaviorSubject.
   * Used for creating a subscription for certain components.
@@ -56,7 +60,7 @@ export class CartService {
   }
 
   getCartCountRef():Observable<number>{
-    return this.cartCount$;
+      return this.cartCount$;
   }
 
   /*

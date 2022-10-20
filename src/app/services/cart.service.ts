@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cart } from '../models/cart';
+import { CartItem } from '../models/cartitem';
 import { Product } from '../models/product';
 
 @Injectable({
@@ -17,11 +18,19 @@ export class CartService {
   * Used to communicate information across non-related components via subscriptions.
   * Henceforth referred to as 'BehaviorSubject'
   */
+  // private _cart = new BehaviorSubject<Cart>({
+  //   cartCount: 0,
+  //   products: [],
+  //   totalPrice: 0.00
+  // });
+
   private _cart = new BehaviorSubject<Cart>({
     cartCount: 0,
     products: [],
     totalPrice: 0.00
   });
+
+  private cartUrl: string = "/api/cart";
 
   /*
   * The Observable representation of the BehaviorSubject
@@ -37,25 +46,32 @@ export class CartService {
   }
 
   /*
+  * After posting to the cart was done,
+  * Add the 
   * Set the BehaviorSubject's cart to a new cart.
   * Anyone subscribed to the BehaviorSubject will receive this update.
   */
   setCart(latestValue: Cart) {
+
     return this._cart.next(latestValue);
   }
 
   /*
   * Post the cart to the backend for the current user.
   */
-  postCartToAPI(): void {
-    this.http.post<Cart>(environment.baseUrl, {
-
+  postCartToAPI(productItem: CartItem): void {
+    this.http.post<Cart>(environment.baseUrl+this.cartUrl, {
+      product: productItem.product, totalPrice: productItem.totalPrice, quantity: productItem.quantity
     });
   }
 
 
-  getCartFromAPI(): Observable<Cart> {
-    return this.http.get<Cart>(environment.baseUrl);
+  /*
+  * Get the list of the cart items from the API
+  * Intended to be used privately
+  */
+  getCartItemsFromAPI(): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(environment.baseUrl+this.cartUrl, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
 }

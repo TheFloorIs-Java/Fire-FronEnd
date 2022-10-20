@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models/product';
 import { Review } from '../models/review';
 
@@ -15,9 +16,13 @@ export class ReviewService {
   }
 
   addReview( reviewr:Review): void {
-  this.http.post<any>("http://localhost:8080/review/", 
+  this.http.post<any>(environment.baseUrl+"/review/", 
    { review:reviewr}).subscribe(()=>  console.log("review added"));
    
+  }
+
+  getReview(id: number): Observable<Review[]> {
+    return this.http.get<Review[]>(environment.baseUrl+"/review/"+id);
   }
   
   

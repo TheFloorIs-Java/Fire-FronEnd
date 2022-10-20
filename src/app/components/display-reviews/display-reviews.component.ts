@@ -30,7 +30,7 @@ export class DisplayReviewsComponent implements OnInit {
   ngOnInit(): void {
     this.product = new Product(this.product_id,"",0, "", 0, "" ) ;
     
-    this.http.get<Review[]>("http://localhost:8080/review/" +  this.product).subscribe(data=> {this.allReviews =data ; console.log(this.allReviews)});
+    
     console.log(this.allReviews);
 
   }

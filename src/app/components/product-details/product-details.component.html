@@ -14,6 +14,11 @@
             <button class="btn btn-outline-success" (click)="addToCart(product)">Add to Cart</button>
         </section>
     </aside>
+    <app-review></app-review>
+    <!-- Just a test -->
+    <ul *ngFor="let item of gottenCart">
+        <li>{{ item.product.name }} {{ item.product.id }}</li>
+    </ul>
 </div>
 </div>
 

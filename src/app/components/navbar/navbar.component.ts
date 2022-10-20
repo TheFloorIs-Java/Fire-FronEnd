@@ -35,9 +35,9 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
- darkMode= false;
+ darkMode= false;  //for dark mode toggle button
   detectColorScheme(){
-    if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark').matches){
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark').matches){  //sets button to toggle between either dark or light mode
       this.darkMode=true;
       document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
     }

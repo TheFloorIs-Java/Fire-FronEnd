@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--text-color);
+    color: var(--text-color); /* sets to selected theme. dark or light mode */
 }
 
 

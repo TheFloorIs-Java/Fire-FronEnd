@@ -34,7 +34,9 @@ import { UserComponent } from './components/user/user.component';
     DisplayReviewsComponent,
     DarkModeToggle,
     DisplayProductsComponent,
-    HomePageComponent
+    HomePageComponent,
+    ProductDetailsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

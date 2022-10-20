@@ -15,8 +15,7 @@ export class NavbarComponent implements OnInit, OnChanges{
   cartCount!: number;
   subscription!: Subscription;
   @Input() addItem!: number;
-  constructor(private authService: AuthService, private router: Router, //private productService: ProductService,
-              private cService: CartService) { 
+  constructor(private authService: AuthService, private router: Router,  private cService: CartService) {//private productService: ProductService,
                 this.detectColorScheme
               }
   
@@ -24,8 +23,11 @@ export class NavbarComponent implements OnInit, OnChanges{
     // this.subscription = this.cService.getCart().subscribe(
     //   (cart) => this.cartCount = cart.cartCount
     // );
-      this.subscription = this.cService.getCartCountRef().subscribe(
-          (count) => this.cartCount = count
+      this.subscription = this.cService.getCartCount().subscribe(
+          (count:number) => {
+              this.cartCount = count;
+              console.log("in ngOnInit"+ count);
+          }
       );
       //this.cService.getCartCount().subscribe(data  => this.cartCount = data);
   }
@@ -36,7 +38,7 @@ export class NavbarComponent implements OnInit, OnChanges{
       // );
       console.log("in ngonchange");
       this.subscription = this.cService.getCartCountRef().subscribe(
-          (count) => this.cartCount = count
+          (count:number) => this.cartCount = count
       );
       //this.cService.getCartCount().subscribe(data  => this.cartCount = data);
   }

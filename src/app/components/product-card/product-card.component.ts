@@ -34,7 +34,7 @@ export class ProductCardComponent implements OnInit{
     //     this.totalPrice = cart.totalPrice;
     //   }
     // );
-    this.subscription = this.cService.getCartCountRef().subscribe(count => this.cartCount);
+    this.subscription = this.cService.getCartCountRef().subscribe((count:number) => this.cartCount);
   }
 
   addToCart(product: Product): void {

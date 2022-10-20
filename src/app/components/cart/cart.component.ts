@@ -23,29 +23,24 @@ export class CartComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
 
   ngOnInit(): void {
-    // this.cService.getCartItemsFromAPI().subscribe(
-    //   cartItems => this.products = cartItems
-    // )
+    this.getCart();
+  }
+
+  getCart(){
     this.cService.getCart().subscribe(
-      (cart) => {
-        this.products = cart.products; // Get the elements from the subscribed cart
-        this.products.forEach(
-          (element) => this.cartProducts.push(element.product) // Move each element's product to a product array.
-        );
-        this.totalPrice = cart.totalPrice;
-      }
+        (cart) => {
+          this.products = cart.products; // Get the elements from the subscribed cart
+          this.products.forEach(
+              (element) => this.cartProducts.push(element.product) // Move each element's product to a product array.
+          );
+          this.totalPrice = cart.totalPrice;
+        }
     );
   }
 
-  /*
-  * Subscribe to the 
-  */
-  // setUpCart()
-
-    deleteItem(product:any): void {
+  deleteItem(product:any): void {
     this.products=this.products.filter(p => {return p!== product;})
   }
-
 
   emptyCart(): void {
     let cart = {
@@ -56,6 +51,7 @@ export class CartComponent implements OnInit {
     this.cService.setCart(cart);
     this.router.navigate(['/home']);
   }
+
 
 
 

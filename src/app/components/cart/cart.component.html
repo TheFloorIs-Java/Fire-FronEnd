@@ -1,8 +1,10 @@
+
+<app-navbar></app-navbar>
 <div class="main">
 <div class="container" id="cart-table">
   <div class="wrapper">
     <div class="Header">
-    <h3 class="Heading">Shopping Cart</h3>
+    <h3 class="Heading" style="color: var(--text-color)">Shopping Cart</h3>
     <h5 class="Action"(click)="emptyCart()">Remove All</h5>
     </div>
     <table class="table table-striped" id="cart-table">
@@ -20,13 +22,13 @@
             <td>{{product.product.id}}</td>
             <td>{{product.product.name}}</td>
             <td>{{product.quantity}}</td>
-            <td>{{product.product.description}}<button class="btn btn-danger" (click)="deleteItem(product)"> Delete </button> </td>
+            <td>{{product.product.description}}<button class="btn btn-danger" (click)="deleteItem(product.product.id)"> Delete </button> </td>
         </tr> 
     </tbody>
     </table>
 </div>
 
+</div>
 <button class="btn-danger" [routerLink]="['/home']">Back</button>
 <button class="btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
-</div>
 </div>

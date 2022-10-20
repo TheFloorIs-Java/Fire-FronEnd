@@ -1,5 +1,8 @@
+
+
+<app-navbar></app-navbar>
 <div class="grid-container">
-    <div class="wrapper">
+    <div class="wrapper"> <!-- sets to use dark mode or light mode themes-->
     <aside class="left-bar">
         <img src="{{ product.image }}">
     </aside>
@@ -18,9 +21,9 @@
     </aside>
     <app-review></app-review>
     <!-- Just a test -->
-    <ul *ngFor="let item of gottenCart">
+    <!-- <ul *ngFor="let item of gottenCart">
         <li>{{ item.product.name }} {{ item.product.id }}</li>
-    </ul>
+    </ul> -->
 </div>
 </div>
 

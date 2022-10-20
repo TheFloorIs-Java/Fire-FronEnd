@@ -19,6 +19,7 @@ import { DarkModeToggle } from './components/dark-mode-toggle.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { UserComponent } from './components/user/user.component';
+import { FirstPageComponent } from './first-page/first-page.component';
 
 
 @NgModule({
@@ -36,8 +37,11 @@ import { UserComponent } from './components/user/user.component';
     DarkModeToggle,
     DisplayProductsComponent,
     HomePageComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    UserComponent,
+    FirstPageComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,

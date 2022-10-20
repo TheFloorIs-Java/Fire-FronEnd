@@ -6,6 +6,8 @@ import { ProductService } from 'src/app/services/product.service';
 import {datepickerAnimation} from "ngx-bootstrap/datepicker/datepicker-animations";
 import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/models/cart';
+import { User } from 'src/app/models/user';
+import { CartItem } from 'src/app/models/cartitem';
 
 @Component({
   selector: 'app-product-details',
@@ -21,6 +23,8 @@ export class ProductDetailsComponent implements OnInit {
     cartCount: 0, products: [], totalPrice: 0.0
   }
 
+  gottenCart!: CartItem[];
+
   constructor(private pService: ProductService, private route: ActivatedRoute, private cService: CartService) {
     this.route.queryParams.subscribe(data => {
       this.product_id = data['id']
@@ -35,6 +39,10 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.product_id+ "printed in ngONInit");
     this.getProduct(this.product_id);
+    this.cService.getCartItemsFromAPI().subscribe(cartitems => {
+      this.gottenCart = cartitems;
+      console.log("This is the cart" +cartitems);
+    });
   }
 
   getProduct(productId: number){
@@ -45,12 +53,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    if (this.newCart.products.find(elem => elem.product.id === product.id)) {
+    if (this.newCart.products.find(item => item.product.id === product.id)) {
       console.log("Element found, updating quantity");
-      this.newCart.products[this.newCart.products.findIndex(elem => elem.product.id === product.id)].quantity++;
+      this.newCart.products[this.newCart.products.findIndex(item => item.product.id === product.id)].quantity++;
     } else {
       console.log("Element not found, adding to cart");
-      this.newCart.products.push({product: product, quantity: 1});
+      this.newCart.products.push({
+        product: product, totalPrice: product.price, quantity: 1});
     }
     this.newCart.cartCount++;
     this.newCart.totalPrice += product.price;

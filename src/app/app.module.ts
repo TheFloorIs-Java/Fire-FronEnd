@@ -18,6 +18,7 @@ import { DisplayReviewsComponent } from './components/display-reviews/display-re
 import { DarkModeToggle } from './components/dark-mode-toggle.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     DisplayReviewsComponent,
     DarkModeToggle,
     DisplayProductsComponent,
-    HomePageComponent,
-    ProductDetailsComponent
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

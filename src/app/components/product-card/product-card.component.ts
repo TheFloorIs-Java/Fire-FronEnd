@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Cart } from 'src/app/models/cart';
+import { CartItem } from 'src/app/models/cartitem';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,10 +16,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductCardComponent implements OnInit{
 
   cartCount!: number;
-  products: {
-    product: Product,
-    quantity: number
-  }[] = [];
+  products: CartItem[] = [];
   subscription!: Subscription;
   totalPrice: number = 0;
 
@@ -48,7 +46,7 @@ export class ProductCardComponent implements OnInit{
       newCart.products[newCart.products.findIndex(elem => elem.product.id === product.id)].quantity++;
     } else {
       console.log("Element not found, adding to cart");
-      newCart.products.push({product: product, quantity: 1});
+      newCart.products.push({product: product, totalPrice: 0, quantity: 1});
     }
     newCart.cartCount = this.cartCount + 1;
     newCart.totalPrice = this.totalPrice + product.price;

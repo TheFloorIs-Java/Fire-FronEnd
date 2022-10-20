@@ -1,5 +1,6 @@
 <div class="main">
 <div class="container" id="cart-table">
+  <div class="wrapper">
     <div class="Header">
     <h3 class="Heading">Shopping Cart</h3>
     <h5 class="Action"(click)="emptyCart()">Remove All</h5>
@@ -27,4 +28,5 @@
 
 <button class="btn-danger" [routerLink]="['/home']">Back</button>
 <button class="btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
+</div>
 </div>

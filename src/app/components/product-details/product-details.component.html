@@ -6,6 +6,8 @@
     <article class="mid-bar">
         <h1>{{ product.name }}</h1>
         <p>{{ product.description }}</p>
+        <app-review [product_id] = "product.id"></app-review>
+        <!-- <app-display-reviews></app-display-reviews> -->
     </article>
     <aside class="right-bar">
         <section>
@@ -14,6 +16,7 @@
             <button class="btn btn-outline-success" (click)="addToCart(product)">Add to Cart</button>
         </section>
     </aside>
+    
 </div>
 </div>
 

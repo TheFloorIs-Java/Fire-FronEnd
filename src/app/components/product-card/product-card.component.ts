@@ -57,7 +57,7 @@ export class ProductCardComponent implements OnInit{
 
 
   addReview(id:number){
-    this.router.navigate(['review']);
+    this.router.navigate(['review'],{queryParams: {id: id}});
 
   }
 

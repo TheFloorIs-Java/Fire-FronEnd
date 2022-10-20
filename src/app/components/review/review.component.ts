@@ -4,6 +4,7 @@ import { Review } from 'src/app/models/review';
 import { ReviewService } from 'src/app/services/review.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-review',
@@ -13,13 +14,14 @@ import { User } from 'src/app/models/user';
 export class ReviewComponent implements OnInit {
   @Input()
   allReviews: Array<Review> = [];
-  product!: Product;
+  productInfo!: Product;
   user!: User;
-  reviewInfo! : Review   ;
+  reviewInfo! : Review ;
   @Input()
   reviewInput : string ="";
-
-  constructor(private rService: ReviewService, private http: HttpClient) { }
+  @Input()
+  product_id:number = 0;
+  constructor(private rService: ReviewService, private http: HttpClient, private pservice:ProductService) { }
 
   ngOnInit(): void {
 
@@ -27,8 +29,19 @@ export class ReviewComponent implements OnInit {
   }
 
  addReview(): void {
-      this.product.id = 1;
-      this.reviewInfo = new Review(1,this.product, this.user,this.reviewInput,)
+       this.productInfo = new Product(1,"",0,"",0,"");
+      this.user = new User(1,"","","","");
+      console.log(this.user);
+      //  this.pservice.getSingleProduct(this.product_id)
+      //   .subscribe(data => {
+          
+      //     this.productInfo = data;
+      //     console.log(this.productInfo);
+      //     console.log(this.user);
+      //   })
+        
+        console.log(this.reviewInput) ; 
+      this.reviewInfo = new Review(this.productInfo, this.user,this.reviewInput)
        
         console.log(this.reviewInfo) ;  
        this.rService.addReview(this.reviewInfo);

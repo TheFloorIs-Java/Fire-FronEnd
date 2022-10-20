@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: "review", component: ReviewComponent },
   { path: "product", component: ProductDetailsComponent},
   { path: "welcome", component: HomePageComponent },
-  { path: "first", component: FirstPageComponent}
+  { path: "first", component: FirstPageComponent},
   { path: "welcome", component: HomePageComponent },
   { path: "user-profile", component: UserComponent}
 ];

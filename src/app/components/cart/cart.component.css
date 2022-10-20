@@ -27,7 +27,7 @@
     height: 30%;
    padding: 50px;
    margin-top: 5px;
-    color:var(--text-color);
+    color:var(--text-color); /* changes test to match theme */
     border-radius: 20px;
     box-shadow: 0px 10px 40px white;
    

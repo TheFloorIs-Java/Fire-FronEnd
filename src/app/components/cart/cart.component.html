@@ -1,3 +1,5 @@
+
+<app-navbar></app-navbar>
 <div class="main">
 <div class="container" id="cart-table">
   <div class="wrapper">
@@ -20,13 +22,13 @@
             <td>{{product.product.id}}</td>
             <td>{{product.product.name}}</td>
             <td>{{product.quantity}}</td>
-            <td>{{product.product.description}}<button class="btn btn-danger" (click)="deleteItem(product)"> Delete </button> </td>
+            <td>{{product.product.description}}<button class="btn btn-danger" (click)="deleteItem(product.product.id)"> Delete </button> </td>
         </tr> 
     </tbody>
     </table>
 </div>
 
+</div>
 <button class="btn-danger" [routerLink]="['/home']">Back</button>
 <button class="btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
-</div>
 </div>

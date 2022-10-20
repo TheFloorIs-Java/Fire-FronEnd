@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -18,6 +19,7 @@ export class CartComponent implements OnInit {
     quantity: number
   }[] = [];
   totalPrice!: number; 
+  cartCounts: number = 0;
   cartProducts: Product[] = []; 
 
   constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
@@ -42,10 +44,7 @@ export class CartComponent implements OnInit {
   */
   // setUpCart()
 
-    deleteItem(product:any): void {
-    this.products=this.products.filter(p => {return p!== product;})
-  }
-
+  
 
   emptyCart(): void {
     let cart = {
@@ -57,6 +56,18 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-
+ // splice is a method where you add and removie array elements //
+  deleteItem(id: number): void {
+    for (let i = 0; i < this.products.length; i++){
+      if (this.products[i].product.id == id) {
+        this.totalPrice -=
+          this.products[i].product.price * this.products[i].quantity;
+           this.products.splice(i, 1);
+          console.log(this.totalPrice);
+      }
+    }
+   
+    // this.products=this.products.filter(p => {return p!== product;})
+  }
 
 }

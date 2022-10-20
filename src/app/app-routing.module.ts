@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReviewComponent } from './components/review/review.component';
+import { FirstPageComponent } from './first-page/first-page.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: "checkout", component: CheckoutComponent },
   { path: "review", component: ReviewComponent },
   { path: "product", component: ProductDetailsComponent},
-  { path: "welcome", component: HomePageComponent }
+  { path: "welcome", component: HomePageComponent },
+  { path: "first", component: FirstPageComponent}
 ];
 
 @NgModule({

@@ -1,11 +1,12 @@
-* {
+*{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
+
 .main {
-    background-color: white;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -15,19 +16,20 @@
 
 .main_container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    justify-self: center;
-    margin: 0 auto;
-    z-index: 1;
-    width: 100%;
-    max-width: 1300px;
-    padding: 0 50px;
+     grid-template-columns: 1fr 1fr; 
+     align-items: center;  
+     justify-self: center; 
+     margin: 0 auto; 
+     z-index: 1; 
+     width: 100%; 
+     max-width: 1300px; 
+     padding: 0 50px;  
 }
 
 .main_content h1 {
-    font-size: 5rem;
+    font-size: 4rem;
     background-color: orange;
+    background-image: black;
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -37,7 +39,8 @@
 
 .main_content h2 {
     font-size: 2rem;
-    background-color: orange;  
+    background-color: orange;
+    background-image: black;
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -45,10 +48,51 @@
     -moz-text-fill-color: transparent;
 }
 
+.main_btn {
+    font-size: 1rem;
+    background-image: linear-gradient(to top, orange 0%, orangered);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    margin-top: 2rem;
+    margin-left: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.35s;
+    outline: none;
+}
+
+.main_btn a {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-decoration: none;
+}
+
+.main_btn:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all 0.35s;
+    border-radius: 4px;
+}
+
+.main_btn:hover {
+    color: white;
+}
+
+.main_btn:hover:after {
+    width: 100%;
+}
+
 .main_img--container {
     text-align: center;
-    right: 40px;
-    top: 50px;
+    height: 30%;
+    top: 100px;
 }
 
 #main-img {
@@ -80,34 +124,4 @@
     color: white;
     
 }
-
 }
-
-
-
-
-/* .row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.col-2 {
-    flex-basis: 50%;
-    min-width: 300px;
-}
-
-.col-2 img{
-    max-width: 170%;
-    position: absolute;
-    left: 150px;
-    width: 200px;
-    
-}
-
-.col-2 h1{
-    font-size: 50px;
-    line-height: 60px;
-    margin: 25px 0;
-} */

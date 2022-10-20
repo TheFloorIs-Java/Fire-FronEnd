@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Cart } from '../models/cart';
-import { CartItem } from '../models/cartitem';
+import {Cart, Cart1} from '../models/cart';
 import { Product } from '../models/product';
 
 @Injectable({
@@ -11,32 +10,39 @@ import { Product } from '../models/product';
 })
 export class CartService {
 
-  constructor(private http: HttpClient) { }
+  endpointURL: String;
+
+  constructor(private http: HttpClient) {
+    this.endpointURL = "/api/cart";
+  }
 
   /*
   * The BehaviorSubject representation of the cart used in the app.
   * Used to communicate information across non-related components via subscriptions.
   * Henceforth referred to as 'BehaviorSubject'
   */
-  // private _cart = new BehaviorSubject<Cart>({
-  //   cartCount: 0,
-  //   products: [],
-  //   totalPrice: 0.00
-  // });
-
   private _cart = new BehaviorSubject<Cart>({
     cartCount: 0,
     products: [],
     totalPrice: 0.00
   });
 
-  private cartUrl: string = "/api/cart";
+  private cart = new BehaviorSubject<Cart1>({
+    id: 0,
+    product: undefined,
+    user: undefined,
+    total_price: 0.00,
+    quantity: 0
+  });
+
+  private cartCount = new BehaviorSubject<number>(0);
 
   /*
   * The Observable representation of the BehaviorSubject
   */
   private _cart$ = this._cart.asObservable();
-
+  private cart$ = this.cart.asObservable();
+  private cartCount$ = this.cartCount.asObservable();
   /*
   * Return the observable of the BehaviorSubject.
   * Used for creating a subscription for certain components.
@@ -45,33 +51,71 @@ export class CartService {
     return this._cart$;
   }
 
+  getCart$(): Observable<Cart1>{
+    return this.cart$;
+  }
+
+  getCartCountRef():Observable<number>{
+    return this.cartCount$;
+  }
+
   /*
-  * After posting to the cart was done,
-  * Add the 
   * Set the BehaviorSubject's cart to a new cart.
   * Anyone subscribed to the BehaviorSubject will receive this update.
   */
   setCart(latestValue: Cart) {
-
     return this._cart.next(latestValue);
+  }
+
+  setCart$(latestValue: Cart1){
+    return this.cart.next(latestValue);
+  }
+
+  setCartCountRef(){
+    console.log("in setCardCountRef")
+    this.getCartCount().subscribe(data => {
+      return this.cartCount.next(data);
+    })
   }
 
   /*
   * Post the cart to the backend for the current user.
   */
-  postCartToAPI(productItem: CartItem): void {
-    this.http.post<Cart>(environment.baseUrl+this.cartUrl, {
-      product: productItem.product, totalPrice: productItem.totalPrice, quantity: productItem.quantity
-    });
+  postCartToAPI(product: Product): Observable<Cart1> {
+    return this.http.post<Cart1>(environment.baseUrl + this.endpointURL+"/add", product,
+        {
+          headers: environment.headers,
+          withCredentials: environment.withCredentials
+        });
   }
 
 
-  /*
-  * Get the list of the cart items from the API
-  * Intended to be used privately
-  */
-  getCartItemsFromAPI(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(environment.baseUrl+this.cartUrl, {headers: environment.headers, withCredentials: environment.withCredentials});
+  getCartFromAPI(): Observable<Cart1[]> {
+    return this.http.get<Cart1[]>(environment.baseUrl + this.endpointURL, {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials
+    });
+  }
+
+  deleteCartItems(id : number){
+    return this.http.delete(environment.baseUrl + this.endpointURL + "/" + id, {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials
+    });
+  }
+
+  deleteAllCartItems(){
+    return this.http.delete(environment.baseUrl + this.endpointURL, {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials
+    });
+  }
+
+  getCartCount():Observable<number>{
+    return this.http.get<number>(environment.baseUrl + this.endpointURL + "/count", {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials
+    });
   }
 
 }

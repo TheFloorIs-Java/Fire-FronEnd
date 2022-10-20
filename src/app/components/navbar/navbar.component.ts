@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DoCheck, Input, OnChanges, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,20 +10,35 @@ import { DarkModeToggle } from '../dark-mode-toggle.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit, OnChanges{
 
   cartCount!: number;
   subscription!: Subscription;
-
+  @Input() addItem!: number;
   constructor(private authService: AuthService, private router: Router, //private productService: ProductService,
               private cService: CartService) { 
                 this.detectColorScheme
               }
   
   ngOnInit(): void {
-    this.subscription = this.cService.getCart().subscribe(
-      (cart) => this.cartCount = cart.cartCount
-    );
+    // this.subscription = this.cService.getCart().subscribe(
+    //   (cart) => this.cartCount = cart.cartCount
+    // );
+      this.subscription = this.cService.getCartCountRef().subscribe(
+          (count) => this.cartCount = count
+      );
+      //this.cService.getCartCount().subscribe(data  => this.cartCount = data);
+  }
+
+  ngOnChanges(){
+      // this.subscription = this.cService.getCart().subscribe(
+      //     (cart) => this.cartCount = cart.cartCount
+      // );
+      console.log("in ngonchange");
+      this.subscription = this.cService.getCartCountRef().subscribe(
+          (count) => this.cartCount = count
+      );
+      //this.cService.getCartCount().subscribe(data  => this.cartCount = data);
   }
 
   ngOnDestroy() {

@@ -6,15 +6,6 @@ import { environment } from 'src/environments/environment';
 import { Cart } from '../models/cart';
 
 
-
-// interface deleteItem {
-//   productId: number;
-//   productName: String;
-//   productDescription: String;
-//   quantity: number;
-
-// }
-
 @Injectable({
   providedIn: 'root'
 })

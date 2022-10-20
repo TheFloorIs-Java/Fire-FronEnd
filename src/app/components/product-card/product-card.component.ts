@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Cart } from 'src/app/models/cart';
-import { CartItem } from 'src/app/models/cartitem';
+import {Cart, Cart1} from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -16,26 +15,30 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductCardComponent implements OnInit{
 
   cartCount!: number;
-  products: CartItem[] = [];
+  products: {
+    product: Product,
+    quantity: number
+  }[] = [];
   subscription!: Subscription;
   totalPrice: number = 0;
-
   @Input() productInfo!: Product;
+
 
   constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
   
   ngOnInit(): void {
-    this.subscription = this.cService.getCart().subscribe(
-      (cart) => {
-        this.cartCount = cart.cartCount;
-        this.products = cart.products;
-        this.totalPrice = cart.totalPrice;
-      }
-    );
+    // this.subscription = this.cService.getCart().subscribe(
+    //   (cart) => {
+    //     this.cartCount = cart.cartCount;
+    //     this.products = cart.products;
+    //     this.totalPrice = cart.totalPrice;
+    //   }
+    // );
+    this.subscription = this.cService.getCartCountRef().subscribe(count => this.cartCount);
   }
 
   addToCart(product: Product): void {
-    let newCart: Cart = {
+    /*let newCart: Cart = {
       cartCount: 0,
       products: [],
       totalPrice: 0.00
@@ -46,16 +49,21 @@ export class ProductCardComponent implements OnInit{
       newCart.products[newCart.products.findIndex(elem => elem.product.id === product.id)].quantity++;
     } else {
       console.log("Element not found, adding to cart");
-      newCart.products.push({product: product, totalPrice: 0, quantity: 1});
+      newCart.products.push({product: product, quantity: 1});
     }
     newCart.cartCount = this.cartCount + 1;
     newCart.totalPrice = this.totalPrice + product.price;
-    this.cService.setCart(newCart);
+    this.cService.setCart(newCart);*/
+
+    this.cService.postCartToAPI(product).subscribe(data => {
+      console.log(data);
+      this.cService.setCartCountRef();
+    });
   }
 
 
   addReview(id:number){
-    this.router.navigate(['review'],{queryParams: {id: id}});
+    this.router.navigate(['review']);
 
   }
 

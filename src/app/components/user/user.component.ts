@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-user',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
-  constructor() { }
+  user!: User;
+  constructor(private authService: AuthService) {
+    this.getUserInfo();
+  }
 
   ngOnInit(): void {
+    //showing product purchase details
+    //showing cart items
+  }
+
+  getUserInfo(){
+    this.authService.getUserInfo().subscribe(data => {
+      this.user = data;
+    })
   }
 
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DarkModeToggle } from '../components/dark-mode-toggle.component';
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,11 @@ export class AuthService {
     const payload = {firstName: firstName, lastName: lastName, email: email, password: password};
     return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers});
   }
-  dark():void{
-    
+
+  getUserInfo(): Observable<User>{
+    return this.http.get<User>(environment.baseUrl +"/auth/user", {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials
+    });
   }
 }

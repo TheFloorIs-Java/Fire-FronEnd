@@ -33,7 +33,7 @@ export class ReviewComponent implements OnInit {
   // HttpSession session = 
   
        this.productInfo = new Product(this.product_id,"",0,"",0,"");
-      this.user = new User(1,"","","","");
+     // this.user = new User(1,"","","","");
       console.log(this.user);
       //  this.pservice.getSingleProduct(this.product_id)
       //   .subscribe(data => {
@@ -44,7 +44,7 @@ export class ReviewComponent implements OnInit {
       //   })
         
         console.log(this.reviewInput) ; 
-      this.reviewInfo = new Review(this.productInfo, this.user,this.reviewInput)
+      this.reviewInfo = new Review(this.productInfo, this.reviewInput)
        
         console.log(this.reviewInfo) ;  
        this.rService.addReview(this.reviewInfo);
@@ -53,9 +53,9 @@ export class ReviewComponent implements OnInit {
 
  }
 
- getUser() {
+ getUserINfo() {
  
-   this.rService.
+  
  }
  
 }

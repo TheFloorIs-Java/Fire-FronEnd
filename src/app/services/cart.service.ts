@@ -25,21 +25,12 @@ export class CartService {
     totalPrice: 0.00
   });
 
-  private cart = new BehaviorSubject<Cart1>({
-    id: 0,
-    product: undefined,
-    user: undefined,
-    total_price: 0.00,
-    quantity: 0
-  });
-
   private cartCount = new BehaviorSubject<number>(0);
 
   /*
   * The Observable representation of the BehaviorSubject
   */
   private _cart$ = this._cart.asObservable();
-  private cart$ = this.cart.asObservable();
   private cartCount$ = this.cartCount.asObservable();
 
   constructor(private http: HttpClient) {
@@ -55,10 +46,6 @@ export class CartService {
     return this._cart$;
   }
 
-  getCart$(): Observable<Cart1>{
-    return this.cart$;
-  }
-
   getCartCountRef():Observable<number>{
       return this.cartCount$;
   }
@@ -69,10 +56,6 @@ export class CartService {
   */
   setCart(latestValue: Cart) {
     return this._cart.next(latestValue);
-  }
-
-  setCart$(latestValue: Cart1){
-    return this.cart.next(latestValue);
   }
 
   setCartCountRef(){

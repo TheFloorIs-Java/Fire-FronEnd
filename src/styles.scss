@@ -1,6 +1,6 @@
-*,
-*::after,
-*::before{margin: 0;}
+//*,
+//*::after,
+//*::before{margin: 0;}
 :root{
   --bg-color: rgb(250, 249, 224);
   --text-color: black;
@@ -9,4 +9,8 @@
 [data-theme="dark"]{
 --bg-color:rgba(21, 19, 19, 0.688);
 --text-color: teal;
+}
+
+body{
+  min-height: 100vh;
 }

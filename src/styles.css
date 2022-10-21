@@ -1,15 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-*,                               /* select as default for entire program  */
-*::after,
-*::before{margin: 0;}
+/**,                               !* select as default for entire program  *!*/
+/**::after,*/
+/**::before{margin: 0;}*/
 :root{         /* default theme */
   --bg-color: white;
   --text-color: rgba(36, 36, 42, 0.969);
 }
 
 [data-theme="dark"]{   /*Darkmode theme */
---bg-color:rgba(20, 19, 19, 0.911);
---text-color:rgb(208, 141, 40);
+  --bg-color:rgba(20, 19, 19, 0.911);
+  --text-color:rgb(208, 141, 40);
 }
 /* use these tags to allow switch */
+body { margin: 0; min-height: 100vh; font-family: Roboto, "Helvetica Neue", sans-serif; }

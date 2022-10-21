@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div class="mat-elevation-z8 info">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="product">
+            <th mat-header-cell *matHeaderCellDef > Product Name </th>
+            <td mat-cell *matCellDef="let cart"><img [src]="cart.product.image" alt="" height="100px" width="100px"> {{cart.product.name}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+            <td mat-cell *matCellDef="let cart"> {{cart.quantity}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="total_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+            <td mat-cell *matCellDef="let cart">
+                <span class="price_col">{{cart.total_price | currency: 'USD'}}
+                <button mat-button color="warn" class="delete_button" (click)="deleteItem(cart.product.id)">Delete</button></span>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <div class="butons">
+        <span><button mat-raised-button [routerLink]="['/home']">Back</button></span>
+        <span><button mat-raised-button (click)="emptyCart()">Empty Cart</button></span>
+        <span><button mat-raised-button class="checkout" [routerLink]="['/checkout']">Proceed to checkout</button></span>
+    </div>
+</div>

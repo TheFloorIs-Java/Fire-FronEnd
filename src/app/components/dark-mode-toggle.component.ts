@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 @Component({
     selector: 'app-dark-mode-toggle',
-    template: `<input type="checkbox" [checked]="darkMode$ | async" (change)="onToggle()"/>`,
+    template: `<!--<input type="checkbox" [checked]="darkMode$ | async" (change)="onToggle()"/>-->`,
   })
   
   export class DarkModeToggle {

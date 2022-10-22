@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import {Cart, Cart1} from '../models/cart';
+import { Cart1 } from '../models/cart';
 import { Product } from '../models/product';
 
 @Injectable({
@@ -12,25 +12,18 @@ export class CartService {
 
   endpointURL: String;
 
-
-
   /*
   * The BehaviorSubject representation of the cart used in the app.
   * Used to communicate information across non-related components via subscriptions.
   * Henceforth referred to as 'BehaviorSubject'
   */
-  private _cart = new BehaviorSubject<Cart>({
-    cartCount: 0,
-    products: [],
-    totalPrice: 0.00
-  });
 
   private cartCount = new BehaviorSubject<number>(0);
 
   /*
   * The Observable representation of the BehaviorSubject
   */
-  private _cart$ = this._cart.asObservable();
+
   private cartCount$ = this.cartCount.asObservable();
 
   constructor(private http: HttpClient) {
@@ -42,9 +35,6 @@ export class CartService {
   * Return the observable of the BehaviorSubject.
   * Used for creating a subscription for certain components.
   */
-  getCart(): Observable<Cart> {
-    return this._cart$;
-  }
 
   getCartCountRef():Observable<number>{
       return this.cartCount$;
@@ -54,9 +44,6 @@ export class CartService {
   * Set the BehaviorSubject's cart to a new cart.
   * Anyone subscribed to the BehaviorSubject will receive this update.
   */
-  setCart(latestValue: Cart) {
-    return this._cart.next(latestValue);
-  }
 
   setCartCountRef(){
     console.log("in setCardCountRef")
@@ -75,7 +62,6 @@ export class CartService {
           withCredentials: environment.withCredentials
         });
   }
-
 
   getCartFromAPI(): Observable<Cart1[]> {
     return this.http.get<Cart1[]>(environment.baseUrl + this.endpointURL, {
@@ -105,5 +91,11 @@ export class CartService {
     });
   }
 
+  getTotalPrice():Observable<number> {
+    return this.http.get<number>(environment.baseUrl + this.endpointURL + "/total", {
+      headers: environment.headers,
+      withCredentials: environment.withCredentials
+    });
+  }
 }
 

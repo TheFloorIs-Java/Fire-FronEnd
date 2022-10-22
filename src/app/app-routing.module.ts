@@ -8,24 +8,20 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReviewComponent } from './components/review/review.component';
-import {UserComponent} from "./components/user/user.component";
 import { FirstPageComponent } from './first-page/first-page.component';
-import {TableComponent} from "./component/table/table.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "home", component: DisplayProductsComponent },
-  { path: "cart", component: TableComponent },
+  { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "review", component: ReviewComponent },
   { path: "product", component: ProductDetailsComponent},
   { path: "welcome", component: HomePageComponent },
   { path: "first", component: FirstPageComponent},
   { path: "welcome", component: HomePageComponent },
-  { path: "user-profile", component: UserComponent},
-  { path: "table", component: TableComponent }
 ];
 
 @NgModule({

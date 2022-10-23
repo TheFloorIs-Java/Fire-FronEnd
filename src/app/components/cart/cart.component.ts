@@ -14,9 +14,9 @@ import {MatSort} from "@angular/material/sort";
 })
 export class CartComponent implements OnInit {
 
-  displayedColumns: string[] = ['product', 'quantity', 'total_price'];
+  displayedColumns: string[] = ['name', 'quantity', 'total_price'];
   dataSource!: MatTableDataSource<Cart1>;
-
+  cart!: Cart1[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -33,7 +33,17 @@ export class CartComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Cart1>(cart);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+      this.cart = cart;
+      // @ts-ignore
+      this.dataSource.sortingDataAccessor = (cart, sortHeaderId) =>{
+        switch (sortHeaderId) {
+          case 'name': return cart.product?.name;
+          case 'quantity': return cart.quantity;
+          case 'total_price': return cart.total_price;
+          default: return cart.product;
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {

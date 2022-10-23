@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Cart1} from "../models/cart";
 import {environment} from "../../environments/environment";
 import {Purchase} from "../models/purchase";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class PurchaseService {
     });
   }
 
-  getPurchases(){
-    return this.http.get<Purchase>(environment.baseUrl + this.endpoint, {
+  getPurchases(): Observable<Purchase[]>{
+    return this.http.get<Purchase[]>(environment.baseUrl + this.endpoint, {
       headers: environment.headers,
       withCredentials: environment.withCredentials
     });

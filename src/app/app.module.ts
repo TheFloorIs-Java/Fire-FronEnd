@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewComponent } from './components/review/review.component';
 import { DisplayReviewsComponent } from './components/display-reviews/display-reviews.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -25,6 +24,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -39,9 +43,9 @@ import {MatCardModule} from '@angular/material/card';
     ReviewComponent,
     DisplayReviewsComponent,
     DisplayProductsComponent,
-    HomePageComponent,
     ProductDetailsComponent,
     FirstPageComponent,
+    PurchaseHistoryComponent,
   ],
 
     imports: [
@@ -57,7 +61,11 @@ import {MatCardModule} from '@angular/material/card';
         MatInputModule,
         MatPaginatorModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        MatGridListModule
     ],
   providers: [],
   bootstrap: [AppComponent]

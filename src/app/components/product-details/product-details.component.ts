@@ -31,7 +31,6 @@ export class ProductDetailsComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    console.log(this.product_id+ "printed in ngONInit");
     this.getProduct(this.product_id);
     this.displayAllReviews();
   }
@@ -39,13 +38,11 @@ export class ProductDetailsComponent implements OnInit {
   getProduct(productId: number){
     this.pService.getSingleProduct(productId).subscribe(data => {
       this.product = data;
-      console.log(data);
     })
   }
 
   addToCart(product: Product) {
     this.cService.postCartToAPI(product).subscribe(data => {
-      console.log(data);
       this.cService.setCartCountRef();
     });
   }

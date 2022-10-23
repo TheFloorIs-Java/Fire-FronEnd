@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewComponent } from './components/review/review.component';
 import { DisplayReviewsComponent } from './components/display-reviews/display-reviews.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -25,6 +24,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from '@angular/material/list';
 import { ProductDetailsCardComponent } from './components/product-details/product-details-card/product-details-card.component'; 
 
@@ -41,9 +45,9 @@ import { ProductDetailsCardComponent } from './components/product-details/produc
     ReviewComponent,
     DisplayReviewsComponent,
     DisplayProductsComponent,
-    HomePageComponent,
     ProductDetailsComponent,
     FirstPageComponent,
+    PurchaseHistoryComponent,
     ProductDetailsCardComponent,
   ],
 
@@ -61,6 +65,10 @@ import { ProductDetailsCardComponent } from './components/product-details/produc
         MatPaginatorModule,
         MatButtonModule,
         MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        MatGridListModule,
         MatListModule,
     ],
   providers: [],

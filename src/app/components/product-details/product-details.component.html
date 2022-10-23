@@ -1,25 +1,7 @@
 <app-navbar></app-navbar>
-
-<div class="grid-container">
-    <div class="wrapper"> <!-- sets to use dark mode or light mode themes-->
-        <mat-card class="example-card">
-            <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ product.name }}</mat-card-title>
-            <mat-card-subtitle><p>Quantity: <span>{{ product.quantity }}</span></p></mat-card-subtitle>
-            <mat-card-subtitle><p>Price: <span>{{ product.price }}</span></p></mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="{{ product.image }}" alt="Photo of a product">
-            <mat-card-content>
-            <p>{{ product.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-            <button (click)="addToCart(product)" mat-button>Add to Cart</button>
-            <button mat-button>Review</button>
-            </mat-card-actions>
-        </mat-card>
-        <div><app-review></app-review></div>
-</div>
-</div>
-
-
+<app-product-details-card 
+    (addToCartClick)="addToCart(product)" 
+    (displayReviewPostClick)="setDisplayReviewPost()"
+    [product]="product"></app-product-details-card>
+<app-display-reviews [allReviews]="allReviews"></app-display-reviews>
+<app-review [postReview]="displayReviewPost"></app-review>

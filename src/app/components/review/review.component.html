@@ -1,22 +1,14 @@
-<textarea [(ngModel)] = "reviewInput" rows = "5" cols = "100" >
+<!-- <textarea [(ngModel)] = "reviewInput" rows = "5" cols = "100" >
     Enter post here...
  
-</textarea><br>
- <br>
-<button  (click) = "addReview()" name="reviewButton" >post</button>
-
-<br>
-    <app-display-reviews></app-display-reviews>    
-    
-
-
- <!-- <div class="container">
-    <div class="row align-items-start">
-       <div class="col" *ngFor="let review of allReviews">
-            <app-display-reviews
-               
-                [reviewInfo]="allReviews"
-            ></app-display-reviews> 
+</textarea><br> -->
+<div *ngIf="postReview">
+<mat-form-field class="example-full-width" appearance="fill" rows="5" cols="100">
+        <mat-label>Leave a Review</mat-label>
+        <textarea [(ngModel)]="reviewInput" matInput placeholder="Ex. It makes me feel..."></textarea>
         
-    </div>
-</div></div> -->
+        
+    </mat-form-field>
+    <button (click) = "addReview()" name="reviewButton" mat-button>Post Review</button>
+</div>
+    <!-- <button >post</button> -->

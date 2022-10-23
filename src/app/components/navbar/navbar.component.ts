@@ -12,6 +12,7 @@ import { DarkModeToggle } from '../dark-mode-toggle.component';
 })
 export class NavbarComponent implements OnInit, OnChanges{
 
+  @Input()
   cartCount!: number;
   subscription!: Subscription;
   @Input() addItem!: number;

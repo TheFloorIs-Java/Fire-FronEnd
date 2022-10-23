@@ -8,6 +8,7 @@ export class Review {
      product :Product;
      user?: User;
      review: string;
+     score: number;
     
 
     constructor ( product :Product,review: string ) {
@@ -16,6 +17,7 @@ export class Review {
         this.product = product;
        // this.user = user;
         this.review =  review;
+        this.score = 0;
     }
 
 }

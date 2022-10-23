@@ -25,6 +25,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import { ProductDetailsCardComponent } from './components/product-details/product-details-card/product-details-card.component'; 
 
 
 @NgModule({
@@ -42,6 +44,7 @@ import {MatCardModule} from '@angular/material/card';
     HomePageComponent,
     ProductDetailsComponent,
     FirstPageComponent,
+    ProductDetailsCardComponent,
   ],
 
     imports: [
@@ -57,7 +60,8 @@ import {MatCardModule} from '@angular/material/card';
         MatInputModule,
         MatPaginatorModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        MatListModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

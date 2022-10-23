@@ -22,6 +22,9 @@ export class ReviewComponent implements OnInit {
   @Input()
   product_id:number = 0;
   user_id : number = 0;
+
+  @Input() postReview: boolean = false;
+  
   constructor(private rService: ReviewService, private http: HttpClient, private pservice:ProductService) { }
 
   ngOnInit(): void {

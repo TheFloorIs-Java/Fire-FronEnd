@@ -12,12 +12,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./display-reviews.component.css']
 })
 export class DisplayReviewsComponent implements OnInit {
+  @Input()
   product!: Product;
   product_id!: number;
 
   @Input()
   reviewInfo!:Review;
-  allReviews:Review[]= [];
+  @Input()
+  allReviews!:Review[];
   
   constructor(private http: HttpClient,
     private pService: ProductService,
@@ -31,12 +33,14 @@ export class DisplayReviewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.product = new Product(this.product_id,"",0, "", 0, "" ) ;
-    this.rService.getAllReviews(this.product_id).subscribe(data=> { 
-      this.allReviews= data ;
-    });
+    // this.product = new Product(this.product_id,"",0, "", 0, "" ) ;
+    // console.log("This product's id is " + this.product.id);
+    // this.rService.getAllReviews(this.product.id).subscribe(data=> { 
+    //   this.allReviews= data ;
+    //   console.log(this.allReviews);
+    // });
    
-    console.log(this.allReviews);
+    
 
   }
 

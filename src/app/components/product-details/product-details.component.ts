@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
+import { ReviewService } from 'src/app/services/review.service';
+import { Review } from 'src/app/models/review';
 
 
 @Component({
@@ -15,9 +17,14 @@ export class ProductDetailsComponent implements OnInit {
 
   product!: Product;
   product_id!: number;
-  subscription!: Subscription;
+  allReviews!: Review[];
+  displayReviewPost: boolean = false;
 
-  constructor(private pService: ProductService, private route: ActivatedRoute, private cService: CartService) {
+
+  constructor(private pService: ProductService, 
+    private route: ActivatedRoute, 
+    private cService: CartService,
+    private rService: ReviewService) {
     this.route.queryParams.subscribe(data => {
       this.product_id = data['id']
     });
@@ -26,6 +33,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.product_id+ "printed in ngONInit");
     this.getProduct(this.product_id);
+    this.displayAllReviews();
   }
 
   getProduct(productId: number){
@@ -42,8 +50,20 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-   }
+  /*
+  * When event is fired, (un)display the review post
+  */
+  setDisplayReviewPost() {
+    this.displayReviewPost = !this.displayReviewPost;
+  }
+
+  /*
+  *
+  */
+  displayAllReviews() {
+    this.rService.getAllReviews(this.product_id)
+      .subscribe(data => { this.allReviews = data });
+  }
+
 
 }

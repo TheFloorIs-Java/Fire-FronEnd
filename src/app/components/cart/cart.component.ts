@@ -59,6 +59,7 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // this function deletes each individual item from the cart itself.
   deleteItem(id: number) {
     this.cService.deleteCartItems(id).subscribe(() => {
       this.cService.getCartFromAPI().subscribe(cart => {
@@ -71,6 +72,7 @@ export class CartComponent implements OnInit {
     })
   }
 
+ 
   emptyCart() {
     this.cService.deleteAllCartItems().subscribe(() => {
       this.cService.setCartCountRef();

@@ -1,21 +1,49 @@
-<div class="grid-container">
-    <div class="wrapper"> <!-- sets to use dark mode or light mode themes-->
-        <mat-card class="example-card">
-            <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ product.name }}</mat-card-title>
-            <mat-card-subtitle><p>Quantity: <span>{{ product.quantity }}</span></p></mat-card-subtitle>
-            <mat-card-subtitle><p>Price: <span>{{ product.price }}</span></p></mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="{{ product.image }}" alt="Photo of a product">
-            <mat-card-content>
-            <p>{{ product.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-            <button (click)="addToCart()" mat-button>Add to Cart</button>
-            <button (click)="displayReviewPost()" mat-button>Review</button>
-            </mat-card-actions>
-        </mat-card>
-        <app-display-reviews [product]="product"></app-display-reviews>   
-</div>
+<!--<div class="grid-container">-->
+<!--    <div class="wrapper"> &lt;!&ndash; sets to use dark mode or light mode themes&ndash;&gt;-->
+<!--        <mat-card class="example-card">-->
+<!--            <mat-card-header>-->
+<!--            <div mat-card-avatar class="example-header-image"></div>-->
+<!--            <mat-card-title>{{ product.name }}</mat-card-title>-->
+<!--            <mat-card-subtitle><p>Quantity: <span>{{ product.quantity }}</span></p></mat-card-subtitle>-->
+<!--            <mat-card-subtitle><p>Price: <span>{{ product.price }}</span></p></mat-card-subtitle>-->
+<!--            </mat-card-header>-->
+<!--            <img mat-card-image src="{{ product.image }}" alt="Photo of a product">-->
+<!--            <mat-card-content>-->
+<!--            <p>{{ product.description }}</p>-->
+<!--            </mat-card-content>-->
+<!--            <mat-card-actions>-->
+<!--            <button (click)="addToCart()" mat-button>Add to Cart</button>-->
+<!--            <button (click)="displayReviewPost()" mat-button>Review</button>-->
+<!--            </mat-card-actions>-->
+<!--        </mat-card>-->
+<!--        <app-display-reviews [product]="product"></app-display-reviews>   -->
+<!--</div>-->
+<!--</div>-->
+<div class="container p-5">
+    <h3> <a [routerLink]="['/home']">Product</a> > {{ product.name }}</h3>
+    <div class="row justify-content-center">
+        <div class="col-6 justify-content-center image">
+            <img [src]="product.image">
+        </div>
+        <div class="col-4 content ">
+            <div class="card-title">
+                <p class="title m-5">{{ product.name }}</p>
+            </div>
+            <div class="card-bdy m-5">
+                <p class="description">{{ product.description }}</p>
+            </div>
+            <div class="stats ml-5 mt-3">
+                <p class="qty">Qty: {{ product.quantity }}</p>
+                <p class="price">Price: {{product.price | currency : 'USD'}}</p>
+            </div>
+            <div class="bt ml-5 mt-2">
+                <span class="cart-btn mr-2">
+                    <button mat-flat-button>Add To Cart</button>
+                </span>
+                <span class="review-btn">
+                    <button mat-flat-button>Review</button>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>

@@ -53,5 +53,13 @@ export class ReviewComponent implements OnInit {
     // console.log(this.review);
     location.reload();
   }
+
+  addReviewHome(product: Product){
+    this.review = new Review(this.product, this.reviewString);
+    console.log(this.review);
+    this.rService.addReview(this.review).subscribe(data => console.log(data));
+    // console.log(this.review);
+    location.reload();
+  }
  
 }

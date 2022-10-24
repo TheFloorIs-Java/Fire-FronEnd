@@ -4,6 +4,12 @@
     background: #f58147;
 }
 
+.container{
+    overflow-y: scroll;
+    max-height: 700px;
+    width: auto;
+}
+
 .review-section {
     margin: auto;
     text-align: left;

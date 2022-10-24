@@ -5,6 +5,8 @@ import { Cart1 } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ReviewComponent} from "../review/review.component";
 
 
 @Component({
@@ -24,7 +26,7 @@ export class ProductCardComponent implements OnInit{
   @Input() productInfo!: Product;
 
 
-  constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
+  constructor(private productService: ProductService, private router: Router, private cService: CartService, private dialog: MatDialog) { }
   
   ngOnInit(): void {
     // this.subscription = this.cService.getCart().subscribe(
@@ -73,6 +75,15 @@ export class ProductCardComponent implements OnInit{
 
   goToProductDetail(productInfo: Product) {
     this.router.navigate(['/product'], {queryParams: {id: productInfo.id}});
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ReviewComponent, {
+      width: 'auto',
+      height: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 

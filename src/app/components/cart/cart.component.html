@@ -32,6 +32,6 @@
     <div class="butons">
         <span><button mat-raised-button [routerLink]="['/home']">Back</button></span>
         <span><button mat-raised-button (click)="emptyCart()">Empty Cart</button></span>
-        <span><button mat-raised-button class="checkout" [routerLink]="['/checkout']">Proceed to checkout</button></span>
+        <span><button mat-raised-button class="checkout" [routerLink]="['/checkout']">Proceed to checkout {{ total | currency: 'USD'}}</button></span>
     </div>
 </div>

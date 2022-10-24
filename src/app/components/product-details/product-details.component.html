@@ -1,27 +1,9 @@
 <app-navbar></app-navbar>
-
-<div class="grid-container">
-    <div class="wrapper"> <!-- sets to use dark mode or light mode themes-->
-    <aside class="left-bar">
-        <img src="{{ product.image }}">
-    </aside>
-    <article class="mid-bar">
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.description }}</p>
-    </article>
-    <aside class="right-bar">
-        <section>
-            <p>Quantity: <span>{{ product.quantity }}</span></p>
-            <p>Price: <span>{{ product.price }}</span></p>
-            <button class="btn btn-outline-success" (click)="addToCart(product)">Add to Cart</button>
-        </section>
-    </aside>
-    <div><app-review></app-review></div>
-    <!-- Just a test -->
-    <!-- <ul *ngFor="let item of gottenCart">
-        <li>{{ item.product.name }} {{ item.product.id }}</li>
-    </ul> -->
-</div>
-</div>
-
-
+<app-product-details-card 
+    (addToCartClick)="addToCart(product)" 
+    (displayReviewPostClick)="setDisplayReviewPost()"
+    [product]="product"></app-product-details-card>
+<!--<app-display-reviews></app-display-reviews>-->
+<!--&lt;!&ndash; <app-display-reviews [allReviews]="displayAllReviews()"></app-display-reviews> &ndash;&gt;-->
+<!--&lt;!&ndash; <app-review [postReview]="displayReviewPost"></app-review> &ndash;&gt;-->
+<!--<app-review></app-review>-->

@@ -1,25 +1,48 @@
-<div class="wrapper">  <!-- sets to use dark mode or light mode themes-->
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" [src]="productInfo.image" alt="Card image cap" (click)="goToProductDetail(productInfo)">
-    <div class="card-body">
-      <h5 class="card-title">{{productInfo.name}}</h5>
-      <p class="card-text">{{productInfo.description}}</p>
-    </div>
-    <div class="input-group input-group-sm mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
-      </div>
-      <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.price" aria-describedby="inputGroup-sizing-sm" disabled>
-    </div>
-    <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">Quantity in Stock</span>
-        </div>
-        <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity" aria-describedby="inputGroup-sizing-sm" disabled>
-      </div>
-    <div class="card-body">
-        <button class="btn btn-outline-success" (click)="addToCart(productInfo)">Add to Cart</button>
-        <button class="btn btn-outline-success" (click)="addReview(productInfo.id)">Review</button>
-      </div>
-  </div>
+<!--<div class="wrapper">  &lt;!&ndash; sets to use dark mode or light mode themes&ndash;&gt;-->
+<!--<div class="card" style="width: 18rem;">-->
+<!--    <img class="card-img-top" [src]="productInfo.image" alt="Card image cap" (click)="goToProductDetail(productInfo)">-->
+<!--    <div class="card-body">-->
+<!--      <h5 class="card-title">{{productInfo.name}}</h5>-->
+<!--      <p class="card-text">{{productInfo.description}}</p>-->
+<!--    </div>-->
+<!--    <div class="input-group input-group-sm mb-3">-->
+<!--      <div class="input-group-prepend">-->
+<!--        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>-->
+<!--      </div>-->
+<!--      <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.price" aria-describedby="inputGroup-sizing-sm" disabled>-->
+<!--    </div>-->
+<!--    <div class="input-group input-group-sm mb-3">-->
+<!--        <div class="input-group-prepend">-->
+<!--          <span class="input-group-text" id="inputGroup-sizing-sm">Quantity in Stock</span>-->
+<!--        </div>-->
+<!--        <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity" aria-describedby="inputGroup-sizing-sm" disabled>-->
+<!--      </div>-->
+<!--    <div class="card-body">-->
+<!--        <button class="btn btn-outline-success" (click)="addToCart(productInfo)">Add to Cart</button>-->
+<!--        <button class="btn btn-outline-success" (click)="addReview(productInfo.id)">Review</button>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="card">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>{{ productInfo.name }}</mat-card-title>
+        </mat-card-header>
+        <a (click)="goToProductDetail(productInfo)"><img mat-card-image class="img" [src]="productInfo.image" alt="Photo of a Shiba Inu"></a>
+        <mat-card-content>
+            <div class="content">
+                <div class="quant">
+                    Quantity: {{ productInfo.quantity }}
+                </div>
+                <div class="price">
+                    Price   : {{ productInfo.price | currency: 'USD' }}
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="addToCart(productInfo)">ADD TO CART</button>
+            <button mat-button (click)="addReview(productInfo.id)">REVIEWS</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
+

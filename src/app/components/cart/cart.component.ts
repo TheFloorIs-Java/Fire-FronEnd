@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import {MatTableDataSource} from "@angular/material/table";
+import {Cart1} from "../../models/cart";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-cart',
@@ -11,48 +14,68 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartComponent implements OnInit {
 
+  displayedColumns: string[] = ['name', 'quantity', 'total_price'];
+  dataSource!: MatTableDataSource<Cart1>;
+  cart!: Cart1[];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  //  deletedItem : Array<DeleteItemService> = [];
-  products: { 
-    product: Product,
-    quantity: number
-  }[] = [];
-  totalPrice!: number; 
-  cartProducts: Product[] = []; 
+  constructor(private productService: ProductService, private router: Router, private cService: CartService) {
 
-  constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
+  }
 
   ngOnInit(): void {
-    this.getCart();
+    this.getCartItem();
   }
 
-  getCart(){
-    this.cService.getCart().subscribe(
-        (cart) => {
-          this.products = cart.products; // Get the elements from the subscribed cart
-          this.products.forEach(
-              (element) => this.cartProducts.push(element.product) // Move each element's product to a product array.
-          );
-          this.totalPrice = cart.totalPrice;
+  getCartItem(){
+    this.cService.getCartFromAPI().subscribe(cart => {
+      this.dataSource = new MatTableDataSource<Cart1>(cart);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.cart = cart;
+      // @ts-ignore
+      this.dataSource.sortingDataAccessor = (cart, sortHeaderId) =>{
+        switch (sortHeaderId) {
+          case 'name': return cart.product?.name;
+          case 'quantity': return cart.quantity;
+          case 'total_price': return cart.total_price;
+          default: return cart.product;
         }
-    );
+      }
+    });
   }
 
-  deleteItem(product:any): void {
-    this.products=this.products.filter(p => {return p!== product;})
+  ngAfterViewInit() {
+
   }
 
-  emptyCart(): void {
-    let cart = {
-      cartCount: 0,
-      products: [],
-      totalPrice: 0.00
-    };
-    this.cService.setCart(cart);
-    this.router.navigate(['/home']);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
+  deleteItem(id: number) {
+    this.cService.deleteCartItems(id).subscribe(() => {
+      this.cService.getCartFromAPI().subscribe(cart => {
+        this.dataSource = new MatTableDataSource<Cart1>(cart);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+      this.cService.setCartCountRef();
 
+    })
+  }
 
+  emptyCart() {
+    this.cService.deleteAllCartItems().subscribe(() => {
+      this.cService.setCartCountRef();
+      this.router.navigate(["/home"]);
+    })
+  }
 
 }

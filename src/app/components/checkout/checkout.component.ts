@@ -4,6 +4,8 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
+import {Cart1} from "../../models/cart";
+import {PurchaseService} from "../../services/purchase.service";
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   }[] = [];
   totalPrice!: number;
   cartProducts: Product[] = [];
+  cart!: Cart1[];
   finalProducts: {id: number, quantity: number}[] = []; 
 
   checkoutForm = new UntypedFormGroup({
@@ -33,47 +36,28 @@ export class CheckoutComponent implements OnInit {
     country: new UntypedFormControl('', Validators.required)
   });
 
-  constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
+  constructor( private router: Router, private cService: CartService, private purchase: PurchaseService) { }
 
   ngOnInit(): void {
-    this.cService.getCart().subscribe(
-      (cart) => {
-        this.products = cart.products;
-        this.products.forEach(
-          (element) => this.cartProducts.push(element.product)
-        );
-        this.totalPrice = cart.totalPrice;
-      }
-    );
+    this.getCart();
   }
 
+  getCart(){
+    this.cService.getCartFromAPI().subscribe(cart =>{
+      this.cart = cart;
+      this.cService.getTotalPrice().subscribe(price => {
+          this.totalPrice = price;
+          console.log(this.totalPrice);
+      });
+    });
+  }
+
+
   onSubmit(): void {
-    this.products.forEach(
-      (element) => {
-        const id = element.product.id;
-        const quantity = element.quantity
-        this.finalProducts.push({id, quantity})
-      } 
-    );
-
-    if(this.finalProducts.length > 0) {
-      this.productService.purchase(this.finalProducts).subscribe(
-        (resp) => console.log(resp),
-        (err) => console.log(err),
-        () => {
-          let cart = {
-            cartCount: 0,
-            products: [],
-            totalPrice: 0.00
-          };
-          this.cService.setCart(cart);
-          this.router.navigate(['/home']);
-        } 
-      );
-
-    } else {
+    this.purchase.makePurchase().subscribe((cart) => {
       this.router.navigate(['/home']);
-    }
+      console.log("purchase confirmed")
+    });
   }
 
 }

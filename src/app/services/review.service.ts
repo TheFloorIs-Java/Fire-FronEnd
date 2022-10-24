@@ -15,44 +15,20 @@ export class ReviewService {
   product !: Product ;
   // create array for all review
    allReviews : Review[] = [];
-   // inject HttpClient in ReviewService class
 
+   endpointURL: string;
   constructor(private http: HttpClient) { 
+    this.endpointURL = "/review";
+  }
 
-  }
-   // create addReview method which accep Review object and use to add that Review object in database
- /**
-     * This method is used to add Review object to the  database
-     * @param reviewr This is the first paramter to addReviw method
-     * @return Nothing
-     */
-   addReview( reviewr:Review): void {
-  
-  this.http.post<Review>(environment.baseUrl+"/review/", 
-   reviewr,{headers: environment.headers, withCredentials: environment.withCredentials}).subscribe(()=>  console.log("review added"));
-   
+  addReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(environment.baseUrl+this.endpointURL, review,
+      {headers: environment.headers, withCredentials: environment.withCredentials});
   }
   
-   
-  getUser():  Observable<User> {
-    return this.http.get<User>(environment.baseUrl+"/userInfo/");
+  getReviewsForProduct(product_id: number): Observable<Review[]> {
+    return this.http.get<Review[]>(environment.baseUrl+this.endpointURL+"/"+product_id,
+      {headers: environment.headers, withCredentials: environment.withCredentials});
   }
-   // create getReview method which pass id parameter and get array of Reviews
-  //getReview(id: number): Observable<Review[]> {
-  //  return this.http.get<Review[]>(environment.baseUrl+"/review/"+id);
- // }
-  
- 
-// Define getReview method which pass number parameter and return array of Reviews filtered by product id
-/**
-     * This method is used to get array of  Review object from   database by use product_id
-     * @param id This is the first paramter to addReviw method
-     * @return Review[] This return Review array
- */
-getAllReviews(id:number ) : Observable<Review[]> {
-  return this.http.get<Review[]>(environment.baseUrl+"/review/" +  id);
-    
-}
-  
 
 }

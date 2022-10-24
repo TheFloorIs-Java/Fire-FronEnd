@@ -5,15 +5,18 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { DarkModeToggle } from '../dark-mode-toggle.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnChanges{
-
+  logoUrl = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fseeklogo.com%2Fvector-logo%2F407471%2Frevature&psig=AOvVaw22V1zvT7A1jL0-fDszLrpd&ust=1666518566083000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPjZ-8rH8_oCFQAAAAAdAAAAABAE'
   cartCount!: number;
   subscription!: Subscription;
+  mode: string = "Light"
+  darkMode!: boolean //for dark mode toggle button
   @Input() addItem!: number;
   constructor(private authService: AuthService, private router: Router,  private cService: CartService) {//private productService: ProductService,
                 //this.detectColorScheme
@@ -56,15 +59,17 @@ export class NavbarComponent implements OnInit, OnChanges{
     this.router.navigate(['login']);
   }
 
- darkMode= false;  //for dark mode toggle button
-  detectColorScheme(){
-    if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark').matches){  //sets button to toggle between either dark or light mode
-      this.darkMode=true;
-      document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
-    }
-  }
+
+  // detectColorScheme(){
+  //
+  //   if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark').matches){  //sets button to toggle between either dark or light mode
+  //     this.darkMode=true;
+  //     document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
+  //   }
+  // }
   toggleTheme(){
     this.darkMode= !this.darkMode;
+    this.mode = this.darkMode == true ? "Dark" : "Light"
     document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
   } 
 }

@@ -1,5 +1,5 @@
-<div class="container">
-    
+<!--<div class="container">
+
 <div class="navbar">
      <div class="logo">
         <img src="../../../assets/images/favicon.png" width="8%" height="8%" alt="Revature" style="color: white">
@@ -8,13 +8,32 @@
    <nav>
         <ul>
            <li><a routerLink="/cart">Cart</a>
-            <span class="badge" style="color: var(--text-color)"><br>{{cartCount}}</span>
+            <span class="badge" style="color: var(&#45;&#45;text-color)"><br>{{cartCount}}</span>
         </li>
            <li><a [routerLink]="['/home']">Products</a></li>
            <li><button class="dark_btn" (click)="toggleTheme()" style="background-color:antiquewhite">Dark Mode</button></li>
            <li><button class="main_btn" (click)="logout();">Logout</button></li>
         </ul>
-       
-    </nav> 
+
+    </nav>
 </div>
-</div>
+</div>-->
+
+<!-- Navigation Starts -->
+
+<mat-toolbar class="nav-bar">
+    <span>
+        <img src="assets/images/rlogo.png">
+        evature Swag Shop
+    </span>
+    <span class="example-spacer"></span>
+    <span>
+        <span><button mat-button class="product" [routerLink]="['/home']">Products</button></span>
+        <span><button mat-button class="purchase" [routerLink]="['/purchase-history']">Purchases</button></span>
+        <span><button mat-button class="cart" [routerLink]="['/cart']">Cart {{cartCount}}</button></span>
+        <span><button mat-button class="logout" (click)="logout()">Logout</button></span>
+        <span class="darkmode"><mat-slide-toggle [checked]="darkMode" (click)="toggleTheme()"> {{ this.mode }} </mat-slide-toggle></span>
+    </span>
+</mat-toolbar>
+
+

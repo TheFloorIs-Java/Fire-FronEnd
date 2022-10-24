@@ -1,0 +1,31 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Product } from 'src/app/models/product';
+
+@Component({
+  selector: 'app-product-details-card',
+  templateUrl: './product-details-card.component.html',
+  styleUrls: ['./product-details-card.component.css']
+})
+export class ProductDetailsCardComponent implements OnInit {
+
+  @Input() product!: Product;
+  @Output() addToCartClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() displayReviewPostClick: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  addToCart() {
+    this.addToCartClick.emit();
+  }
+
+  /*
+  * Emit to product-details to set review posting to its opposite status.
+  */
+  displayReviewPost() {
+    this.displayReviewPostClick.emit();
+  }
+
+}

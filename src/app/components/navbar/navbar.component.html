@@ -2,7 +2,7 @@
 
 <div class="navbar">
      <div class="logo">
-        <img src="../../../assets/images/favicon.png" width="8%" height="8%" alt="Revature" style="color: white">
+        <img src="../../../assets/images/favicon.png" width="8%" height="8%" alt="Revature" style="color: white" [routerLink]="['/first']" >
         Revature Swag Shop
      </div>
    <nav>
@@ -12,7 +12,7 @@
         </li>
            <li><a [routerLink]="['/home']">Products</a></li>
            <li><button class="dark_btn" (click)="toggleTheme()" style="background-color:antiquewhite">Dark Mode</button></li>
-           <li><button class="main_btn" (click)="logout();">Logout</button></li>
+           <li><button class="main_btn"  (click)="logout();">Logout</button></li>
         </ul>
 
     </nav>

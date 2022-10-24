@@ -24,13 +24,13 @@
 <!--  </div>-->
 <!--</div>-->
 <div class="card">
-    <mat-card class="example-card">
+    <mat-card class="example-card" style="color: var(--text-color);  background: var(--bg-color);"> <!-- Darkmode enabler-->
         <mat-card-header>
             <mat-card-title>{{ productInfo.name }}</mat-card-title>
         </mat-card-header>
         <a (click)="goToProductDetail(productInfo)"><img mat-card-image class="img" [src]="productInfo.image" alt="Photo of a Shiba Inu"></a>
         <mat-card-content>
-            <div class="content">
+            <div class="content" style="color: var(--text-color); ">
                 <div class="quant">
                     Quantity: {{ productInfo.quantity }}
                 </div>

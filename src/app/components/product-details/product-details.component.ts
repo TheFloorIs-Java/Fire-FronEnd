@@ -32,7 +32,7 @@ export class ProductDetailsComponent implements OnInit {
   
   ngOnInit(): void {
     this.getProduct(this.product_id);
-    this.displayAllReviews();
+    // this.displayAllReviews();
   }
 
   getProduct(productId: number){
@@ -57,10 +57,10 @@ export class ProductDetailsComponent implements OnInit {
   /*
   *
   */
-  displayAllReviews() {
-    this.rService.getAllReviews(this.product_id)
+  displayAllReviews(): Review[] {
+    this.rService.getReviewsForProduct(this.product_id)
       .subscribe(data => { this.allReviews = data });
+      return this.allReviews;
   }
-
 
 }

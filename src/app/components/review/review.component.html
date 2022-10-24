@@ -2,13 +2,14 @@
     Enter post here...
  
 </textarea><br> -->
-<div *ngIf="postReview">
-<mat-form-field class="example-full-width" appearance="fill" rows="5" cols="100">
+<!-- <div *ngIf="postReview"> -->
+<mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Leave a Review</mat-label>
-        <textarea [(ngModel)]="reviewInput" matInput placeholder="Ex. It makes me feel..."></textarea>
+        <textarea [(ngModel)]="reviewString" matInput placeholder="Ex. It makes me feel..."></textarea>
         
-        
+
     </mat-form-field>
     <button (click) = "addReview()" name="reviewButton" mat-button>Post Review</button>
-</div>
+<!-- </div> -->
+<app-display-reviews ></app-display-reviews>
     <!-- <button >post</button> -->

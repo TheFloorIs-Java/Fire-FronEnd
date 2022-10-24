@@ -14,33 +14,20 @@ export class ReviewService {
    product !: Product ;
   //  reviewrs !: Review;
    allReviews : Review[] = [];
+
+   endpointURL: string;
   constructor(private http: HttpClient) { 
-
+    this.endpointURL = "/review";
   }
 
-  addReview( reviewr:Review): void {
-  // this.http.post<Review>("http://localhost:8080/review/", 
-  this.http.post<Review>(environment.baseUrl+"/review/", 
-   reviewr,{headers: environment.headers, withCredentials: environment.withCredentials}).subscribe(()=>  console.log("review added"));
-   
-  }
-
-
-  getUser():  Observable<User> {
-    return this.http.get<User>(environment.baseUrl+"/userInfo/");
-  }
-
-  getReview(id: number): Observable<Review[]> {
-    return this.http.get<Review[]>(environment.baseUrl+"/review/"+id);
+  addReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(environment.baseUrl+this.endpointURL, review,
+      {headers: environment.headers, withCredentials: environment.withCredentials});
   }
   
- 
-  
-getAllReviews(id:number ) : Observable<Review[]> {
-  return this.http.get<Review[]>(environment.baseUrl+"/review/" +  id);
-  //.subscribe(data=> {this.allReviews =data ; console.log(this.allReviews)});
-  
-}
-  
+  getReviewsForProduct(product_id: number): Observable<Review[]> {
+    return this.http.get<Review[]>(environment.baseUrl+this.endpointURL+"/"+product_id,
+      {headers: environment.headers, withCredentials: environment.withCredentials});
+  }
 
 }

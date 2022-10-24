@@ -14,7 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DisplayReviewsComponent implements OnInit {
   @Input()
   product!: Product;
-  product_id!: number;
+  @Input()
+  product_id: number = 0;
 
   @Input()
   reviewInfo!:Review;
@@ -25,9 +26,9 @@ export class DisplayReviewsComponent implements OnInit {
     private pService: ProductService,
      private route: ActivatedRoute,
      private rService: ReviewService)  { 
-    this.route.queryParams.subscribe(data => {
-      this.product_id = data['id']
-    });
+    // this.route.queryParams.subscribe(data => {
+    //   this.product_id = data['id']
+    // });
     
     
   }
@@ -35,12 +36,14 @@ export class DisplayReviewsComponent implements OnInit {
   ngOnInit(): void {
     // this.product = new Product(this.product_id,"",0, "", 0, "" ) ;
     // console.log("This product's id is " + this.product.id);
-    // this.rService.getAllReviews(this.product.id).subscribe(data=> { 
+    // console.log(this.product);
+    // this.rService.getReviewsForProduct(this.product.id).subscribe(data=> { 
     //   this.allReviews= data ;
     //   console.log(this.allReviews);
     // });
-   
     
+    // this.rService.getReviewsForProduct(this.product_id)
+    //   .subscribe(data => this.allReviews = data)
 
   }
 

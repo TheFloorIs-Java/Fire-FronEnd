@@ -5,19 +5,20 @@ import { User } from "./user";
 export class Review {
    
      id?: number  ;
-     product :Product;
+     product!: Product;
      user?: User;
-     review: string;
-     score: number;
+     review!: string;
     
 
     constructor ( product :Product,review: string ) {
         
-        //this.id = id;
+        this.id = 0;
         this.product = product;
-       // this.user = user;
+        this.user = undefined;
         this.review =  review;
-        this.score = 0;
     }
-
+    // buildReview(product: Product, review: string) {
+    //     this.product = product;
+    //     this.review = review;
+    // }
 }

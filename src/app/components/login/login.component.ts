@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         this.authService.loggedIn=true;
       },
       (err) => console.log(err),
-      () => this.router.navigate(['/home'])
+      () => this.router.navigate(['home'])
     );
   }
 

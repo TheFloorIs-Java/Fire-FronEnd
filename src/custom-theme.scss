@@ -20,7 +20,7 @@ $e-commerce-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$e-commerce-theme: mat.define-dark-theme((
+$e-commerce-theme: mat.define-light-theme((
   color: (
     primary: $e-commerce-primary,
     accent: $e-commerce-accent,
@@ -32,4 +32,5 @@ $e-commerce-theme: mat.define-dark-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($e-commerce-theme);
+
 

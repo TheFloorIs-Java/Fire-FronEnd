@@ -33,7 +33,7 @@
         <span><button mat-button class="cart" [routerLink]="['/cart']">Cart {{cartCount}}</button></span>
         <span><button mat-button class="logout" (click)="logout()">Logout</button></span>
       <!--  <span class="darkmode"><mat-slide-toggle [checked]="darkMode" (click)="toggleTheme()"> {{ this.mode }} </mat-slide-toggle></span>  -->
-        <span><mat-slide-toggle [(ngModel)]="mode" class="darkMode"  (change)="toggleTheme()">  {{mode}}
+        <span style="margin:8px"><mat-slide-toggle [(ngModel)]="mode" class="darkMode"  (change)="toggleTheme()">  {{mode}}
 </mat-slide-toggle> </span> 
     </span>
 </mat-toolbar>

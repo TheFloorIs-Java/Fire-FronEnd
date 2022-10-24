@@ -13,4 +13,19 @@
 mat-paginator {
     width: 70%;
     margin: auto;
+    background:  #d66a34 ;
 }
+img{
+    background: #f58147;
+}
+::ng-deep mat-option {
+    background: COLOR1 !important;
+     color: #f58147 !important;
+  }
+  .md-table-pagination > * {
+    color: #f58147
+  }
+  .mat-select-value{
+    color: #f58147
+  }
+  

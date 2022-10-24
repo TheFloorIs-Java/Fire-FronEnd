@@ -1,3 +1,16 @@
-.review-list {
-    color: black;
+.example-card {
+    margin: auto;
+    width: 70%;
+    background: #f58147;
+}
+
+.review-section {
+    margin: auto;
+    text-align: left;
+    width: 70%;
+}
+
+mat-paginator {
+    width: 70%;
+    margin: auto;
 }

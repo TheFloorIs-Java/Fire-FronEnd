@@ -3,13 +3,24 @@
  
 </textarea><br> -->
 <!-- <div *ngIf="postReview"> -->
-<mat-form-field class="example-full-width" appearance="fill" style="background-color: var(--bg-color); color: var(--text-color)">
+<!-- <mat-form-field class="example-full-width" appearance="fill" style="background-color: var(--bg-color); color: var(--text-color)">
         <mat-label>Leave a Review</mat-label>
         <textarea [(ngModel)]="reviewString" matInput placeholder="Ex. It makes me feel..."></textarea>
         
 
     </mat-form-field>
-    <button (click) = "addReview()" name="reviewButton" mat-button>Post Review</button>
+    <button (click) = "addReview()" name="reviewButton" mat-button>Post Review</button> -->
 <!-- </div> -->
 <!-- <app-display-reviews ></app-display-reviews> -->
     <!-- <button >post</button> -->
+<div class="container">
+    <h1 mat-dialog-title>Leave a Review</h1>
+    <div mat-dialog-content class="dialog">
+        <textarea [(ngModel)]="reviewString" placeholder="Ex. It makes me feel..."  rows = "5" cols = "100"></textarea>
+    </div>
+    <div mat-dialog-actions>
+        <button (click)="addReview()" mat-button mat-dialog-close cdkFocusInitial>Submit</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+</div>
+    

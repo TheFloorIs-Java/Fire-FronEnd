@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Product } from 'src/app/models/product';
+import { ReviewComponent } from '../../review/review.component';
 
 @Component({
   selector: 'app-product-details-card',
@@ -12,7 +14,7 @@ export class ProductDetailsCardComponent implements OnInit {
   @Output() addToCartClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() displayReviewPostClick: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -28,4 +30,13 @@ export class ProductDetailsCardComponent implements OnInit {
     this.displayReviewPostClick.emit();
   }
 
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ReviewComponent, {
+      width: 'auto',
+      height: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 }
+

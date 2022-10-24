@@ -21,7 +21,9 @@ export class DisplayReviewsComponent implements OnInit {
   @Input()
   reviewInfo!:Review;
   @Input()
-  allReviews$!: Observable<Review[]>;
+  allReviews!: Review[];
+
+  currentReviews!: Review[];
   
   constructor(private http: HttpClient,
     private pService: ProductService,
@@ -32,21 +34,22 @@ export class DisplayReviewsComponent implements OnInit {
     // });
     
     
+    
   }
 
   ngOnInit(): void {
-    // this.product = new Product(this.product_id,"",0, "", 0, "" ) ;
-    // console.log("This product's id is " + this.product.id);
-    // console.log(this.product);
-    // this.rService.getReviewsForProduct(this.product.id).subscribe(data=> { 
-    //   this.allReviews= data ;
-    //   console.log(this.allReviews);
-    // });
+    this.rService.getReviewsForProduct(this.product_id)
+      .subscribe(data => { 
+        this.allReviews = data;
+        console.log("Show a review " + this.allReviews[0].review);
+        this.currentReviews = this.allReviews.slice(0, 5);
+       });
+    // this.currentReviews = this.allReviews.slice(0, 5);
     
-    // this.rService.getReviewsForProduct(this.product_id)
-    //   .subscribe(data => this.allReviews = data)
-
   }
 
+  onPageChange($event: any) {
+      this.currentReviews =  this.allReviews.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  }
 
 }

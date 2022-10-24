@@ -1,4 +1,46 @@
-img {
-    width: 500px;
+.container{
+    margin-top: 25px;
+    box-shadow: 0px 0px 14px 1px rgba(255,139,0,0.54);
     height: auto;
+}
+.row{
+    margin: auto;
+
+}
+.image{
+    min-height: 450px;
+    max-height: 450px;
+}
+img{
+    min-height: 450px;
+    max-height: 450px;
+    width: 100%;
+}
+
+.content{
+    overflow-x: hidden;
+    word-break: break-word;
+}
+
+.card-title{
+    position: relative;
+}
+
+.title{
+    font-size: 250%;
+    line-height: 100%;
+}
+
+.card-bdy{
+    position: relative;
+
+}
+
+.description{
+    font-size: 150%;
+    line-height: 100%;
+}
+
+.stats{
+    font-weight: bolder;
 }

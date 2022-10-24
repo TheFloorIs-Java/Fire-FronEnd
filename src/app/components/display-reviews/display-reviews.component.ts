@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-display-reviews',
@@ -20,7 +21,7 @@ export class DisplayReviewsComponent implements OnInit {
   @Input()
   reviewInfo!:Review;
   @Input()
-  allReviews!:Review[];
+  allReviews$!: Observable<Review[]>;
   
   constructor(private http: HttpClient,
     private pService: ProductService,

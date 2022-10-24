@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -57,10 +57,8 @@ export class ProductDetailsComponent implements OnInit {
   /*
   *
   */
-  displayAllReviews(): Review[] {
-    this.rService.getReviewsForProduct(this.product_id)
-      .subscribe(data => { this.allReviews = data });
-      return this.allReviews;
+  displayAllReviews(): Observable<Review[]> {
+    return this.rService.getReviewsForProduct(this.product_id);
   }
 
 }

@@ -4,7 +4,7 @@
     <p> {{reviews.review}} </p>  
     
  </div>  -->
- <mat-list role="list" *ngFor="let review of allReviews">
+ <mat-list role="list" *ngFor="let review of allReviews$ | async">
     <mat-list-item class="review-list" role="listitem">{{ review.review }}</mat-list-item>
   </mat-list>
   

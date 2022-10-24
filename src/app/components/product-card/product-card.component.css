@@ -46,9 +46,10 @@ a{
 }
 
 .img{
-    background: white;
+    background: var(--bg-color);
     min-height: 358px;
     margin-top: 50px;
+    color: var(--text-color);
 }
 
 .card{
@@ -59,6 +60,7 @@ a{
 mat-card-content{
     font-size: 1.1rem;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 .content{

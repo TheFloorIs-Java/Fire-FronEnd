@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit, OnChanges{
   cartCount!: number;
   subscription!: Subscription;
   mode: string = "Light"
-  darkMode!: boolean //for dark mode toggle button
+  @Input() darkMode!: boolean //for dark mode toggle button
   @Input() addItem!: number;
   constructor(private authService: AuthService, private router: Router,  private cService: CartService) {//private productService: ProductService,
                 //this.detectColorScheme
@@ -69,6 +69,7 @@ export class NavbarComponent implements OnInit, OnChanges{
   // }
   toggleTheme(){
     this.darkMode= !this.darkMode;
+    
     this.mode = this.darkMode == true ? "Dark" : "Light"
     document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
   } 

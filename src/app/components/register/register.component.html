@@ -1,22 +1,34 @@
 <img src="../../../assets/images/rev-logo.png" width="30%" height="30%" alt="Revature">
+
+
 <form id="register-form" [formGroup]="registerForm">
-    <div class="form-group">
-        <label for="inputFirstName">First Name</label>
-        <input type="text" class="form-control" formControlName="fname" id="inputFirstName" placeholder="Enter First Name">
+  <div class="form-box">
+    <div class="button-box">
+    <div id="btn"></div>
+    <button type="button" class="toggle-btn">Login</button>
+    <button type="button" class="toggle-btn" [routerLink]="['/register']">Register</button>
+    </div> 
+      <div class="input-group">
+        <label for="inputFirstName"></label>
+        <input type="text" class="input-field" formControlName="fname" id="inputFirstName" placeholder="Enter First Name">
+    
+  
+        <label for="inputLastName"></label>
+        <input type="text" class="input-field" formControlName="lname" id="inputLastName" placeholder="Enter Last Name">
+    
+   
+      <label for="inputEmail"></label>
+      <input type="email" class="input-field" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+      <small id="emailHelp" class="form-text text-muted"></small>
+ 
+      <label for="inputPassword"></label>
+      <input type="password" class="input-field" formControlName="password" id="inputPassword" placeholder="Enter Password">
+   
+    <button class="submit-btn" (click)="onSubmit()">Register</button>
       </div>
-    <div class="form-group">
-        <label for="inputLastName">Last Name</label>
-        <input type="text" class="form-control" formControlName="lname" id="inputLastName" placeholder="Enter Last Name">
-    </div>
-    <div class="form-group">
-      <label for="inputEmail">Email address</label>
-      <input type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
-      <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword">Password</label>
-      <input type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
-    </div>
-    <button class="btn btn-primary" (click)="onSubmit()">Register</button>
+      </div>
 </form>
+
+ 
+
 

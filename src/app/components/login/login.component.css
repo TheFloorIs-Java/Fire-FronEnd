@@ -21,7 +21,7 @@
    background: white;
    border: none;
    border-radius: 20px;
-   box-shadow: 5px 10px 40px orange;
+   box-shadow: 5px 10px 40px darkorange;
    background: #fff;
    padding: 5px;
 }
@@ -30,7 +30,7 @@
     width: 220px;
      margin: 35px auto;
     position: relative;
-    box-shadow: 5px 10px 40px orange;
+    box-shadow: 5px 10px 40px darkorange;
     border-radius: 30px;
 }
 
@@ -49,7 +49,7 @@
     position: absolute;
     width: 110px;
     height: 100%;
-    background: linear-gradient(to right, orange, #ffad06);
+    background: linear-gradient(to right, darkorange, darkorange);
     border-radius: 30px;
     transition: .5s;
 }
@@ -80,7 +80,7 @@
     display: block;
     margin: 35px auto;
     margin-right: 10px;
-    background: orange;
+    background: darkorange;
     border: 0;
     outline: none;
     border-radius: 30px;

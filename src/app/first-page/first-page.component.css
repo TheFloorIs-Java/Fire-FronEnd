@@ -28,7 +28,7 @@
 
 .main_content h1 {
     font-size: 4rem;
-    background-color: orange;
+    background-color: darkorange;
     background-image: black;
     background-size: 100%;
     -webkit-background-clip: text;
@@ -39,7 +39,7 @@
 
 .main_content h2 {
     font-size: 2rem;
-    background-color: orange;
+    background-color: darkorange;
     background-image: black;
     background-size: 100%;
     -webkit-background-clip: text;

@@ -2,7 +2,7 @@
 
 <div class="navbar">
      <div class="logo">
-        <img src="../../../assets/images/favicon.png" width="8%" height="8%" alt="Revature" style="color: white">
+        <img src="../../../assets/images/favicon.png" width="8%" height="8%" alt="Revature" style="color: white" [routerLink]="['/first']" >
         Revature Swag Shop
      </div>
    <nav>
@@ -12,7 +12,7 @@
         </li>
            <li><a [routerLink]="['/home']">Products</a></li>
            <li><button class="dark_btn" (click)="toggleTheme()" style="background-color:antiquewhite">Dark Mode</button></li>
-           <li><button class="main_btn" (click)="logout();">Logout</button></li>
+           <li><button class="main_btn"  (click)="logout();">Logout</button></li>
         </ul>
 
     </nav>
@@ -32,7 +32,9 @@
         <span><button mat-button class="purchase" [routerLink]="['/purchase-history']">Purchases</button></span>
         <span><button mat-button class="cart" [routerLink]="['/cart']">Cart {{cartCount}}</button></span>
         <span><button mat-button class="logout" (click)="logout()">Logout</button></span>
-        <span class="darkmode"><mat-slide-toggle [checked]="darkMode" (click)="toggleTheme()"> {{ this.mode }} </mat-slide-toggle></span>
+      <!--  <span class="darkmode"><mat-slide-toggle [checked]="darkMode" (click)="toggleTheme()"> {{ this.mode }} </mat-slide-toggle></span>  -->
+        <span style="margin:8px"><mat-slide-toggle [(ngModel)]="mode" class="darkMode"  (change)="toggleTheme()">  {{mode}}
+</mat-slide-toggle> </span> 
     </span>
 </mat-toolbar>
 

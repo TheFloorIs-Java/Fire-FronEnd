@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/user';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-review',
@@ -29,7 +30,10 @@ export class ReviewComponent implements OnInit {
   product!: Product;
   reviewString!: string;
 
-  constructor(private rService: ReviewService, private http: HttpClient, private router: ActivatedRoute) {
+  constructor(private rService: ReviewService, 
+    private http: HttpClient, 
+    private router: ActivatedRoute,
+    public dialogRef: MatDialogRef<ReviewComponent>) {
     this.router.queryParams.subscribe(data => {
       let productId = data['id'];
       this.product = new Product(productId, "", 0, "", 0, "");
@@ -47,6 +51,7 @@ export class ReviewComponent implements OnInit {
     console.log(this.review);
     this.rService.addReview(this.review).subscribe(data => console.log(data));
     // console.log(this.review);
+    location.reload();
   }
  
 }

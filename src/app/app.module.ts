@@ -31,6 +31,7 @@ import { PurchaseHistoryComponent } from './components/purchase-history/purchase
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from '@angular/material/list';
 import { ProductDetailsCardComponent } from './components/product-details/product-details-card/product-details-card.component'; 
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog'; 
 
 
 @NgModule({
@@ -70,8 +71,12 @@ import { ProductDetailsCardComponent } from './components/product-details/produc
         MatSlideToggleModule,
         MatGridListModule,
         MatListModule,
+        MatDialogModule,
     ],
-  providers: [],
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

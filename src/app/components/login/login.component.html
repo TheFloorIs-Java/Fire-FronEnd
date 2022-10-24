@@ -3,11 +3,10 @@
 <div class="login-form" [formGroup]="loginForm">
     <div class="form-box">
       <div class="button-box">
-      <div id="btn"></div>
-        <button type="button" class="toggle-btn">Login</button>
+        <button type="button" class="toggle-btn1">Login</button>
         <button type="button" class="toggle-btn" [routerLink]="['/register']">Register</button>
       </div>
-      <div class="input-group">
+      <div class="login" class="input-group">
       <label for="exampleInputEmail1"></label>
       <input type="email" class="input-field" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>

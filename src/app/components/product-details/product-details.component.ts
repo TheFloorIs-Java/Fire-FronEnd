@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   product!: Product;
   product_id!: number;
   allReviews!: Review[];
-  displayReviewPost: boolean = false;
+  toggleModal: boolean = false;
 
 
   constructor(private pService: ProductService, 
@@ -51,7 +51,7 @@ export class ProductDetailsComponent implements OnInit {
   * When event is fired, (un)display the review post
   */
   setDisplayReviewPost() {
-    this.displayReviewPost = !this.displayReviewPost;
+    this.toggleModal = !this.toggleModal;
   }
 
   /*

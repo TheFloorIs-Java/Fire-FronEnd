@@ -30,9 +30,11 @@
       <mat-card class="example-card mt-2" *ngFor="let review of currentReviews">
          <mat-card-header>
          <div mat-card-avatar class="example-header-image"></div>
-         <mat-card-title>{{ review.user?.firstName }} wrote</mat-card-title>
+         <mat-card-title>{{ review.review }} 
+         </mat-card-title>
+         <span><review-stars></review-stars></span>
          </mat-card-header>
-            <mat-card-subtitle>{{ review.review }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ review.user?.firstName }}</mat-card-subtitle>
       </mat-card>
       <mat-paginator 
          (page)="onPageChange($event)"

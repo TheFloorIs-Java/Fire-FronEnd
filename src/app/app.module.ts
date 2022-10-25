@@ -13,7 +13,7 @@ import { DisplayProductsComponent } from './components/display-products/display-
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewComponent } from './components/review/review.component';
-import { DisplayReviewsComponent } from './components/display-reviews/display-reviews.component';
+import { DisplayReviewsComponent, ReviewStarsComponent } from './components/display-reviews/display-reviews.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -32,6 +32,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from '@angular/material/list';
 import { ProductDetailsCardComponent } from './components/product-details/product-details-card/product-details-card.component'; 
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog'; 
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
     FirstPageComponent,
     PurchaseHistoryComponent,
     ProductDetailsCardComponent,
+    ReviewStarsComponent,
   ],
 
     imports: [
@@ -72,6 +74,7 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
         MatGridListModule,
         MatListModule,
         MatDialogModule,
+        MatButtonToggleModule,
     ],
   providers: [{
     provide: MatDialogRef,

@@ -9,9 +9,11 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class PurchaseService {
-  endpoint: String;
+  endpoint: string;
+  productURL: string;
   constructor(private http: HttpClient) {
     this.endpoint = "/api/purchase"
+    this.productURL = "/api/product"
   }
   /**
      * This method is used to add purchase objects to database 
@@ -33,5 +35,15 @@ export class PurchaseService {
       headers: environment.headers,
       withCredentials: environment.withCredentials
     });
+  }
+
+  /**
+   * This method is used to add purchase  object to database
+   * @param products This is the  parameter of purchase method
+   * @return Observable<any> This returns  array of product objects.
+   */
+  purchase(products: {id?:number, quantity?:number}[]): Observable<any> {
+    const payload = JSON.stringify(products);
+    return this.http.patch<any>(environment.baseUrl+this.productURL, payload, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 }

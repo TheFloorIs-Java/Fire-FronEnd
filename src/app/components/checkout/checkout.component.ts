@@ -6,6 +6,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { CartService } from 'src/app/services/cart.service';
 import {Cart1} from "../../models/cart";
 import {PurchaseService} from "../../services/purchase.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-checkout',
@@ -15,8 +16,8 @@ import {PurchaseService} from "../../services/purchase.service";
 export class CheckoutComponent implements OnInit {
 
   products: {
-    product: Product,
-    quantity: number
+    id?: number,
+    quantity?: number
   }[] = [];
   totalPrice!: number;
   cartProducts: Product[] = [];
@@ -36,6 +37,7 @@ export class CheckoutComponent implements OnInit {
     country: new UntypedFormControl('', Validators.required)
   });
 
+  constructor( private router: Router, private cService: CartService, private purchase: PurchaseService, private snackBar: MatSnackBar) { }
 
   /**
      * This constructor is used to inject  Router, CartService and PurchaseService
@@ -44,7 +46,7 @@ export class CheckoutComponent implements OnInit {
      * @param purchase This is the third parameter to constructor method
      * @return Nothing.
      */
-  constructor( private router: Router, private cService: CartService, private purchase: PurchaseService) { }
+
 
   ngOnInit(): void {
     this.getCart();
@@ -52,7 +54,7 @@ export class CheckoutComponent implements OnInit {
 
 
   /**
-     * This method is used to get cart from database 
+     * This method is used to get cart from database
      * @return Nothing
     */
   getCart(){
@@ -66,14 +68,28 @@ export class CheckoutComponent implements OnInit {
   }
 
   /**
-     * This method is used to add purchase to database 
+     * This method is used to add purchase to database
      * @return Nothing
     */
   onSubmit(): void {
-    this.purchase.makePurchase().subscribe((cart) => {
+    for (let crt of this.cart){
+      this.products.push(
+          {
+            id: crt.product?.id,
+            quantity: crt.quantity
+          }
+      )
+    }
+    this.purchase.purchase(this.products).subscribe((product) => {
       this.router.navigate(['/home']);
       console.log("purchase confirmed")
-    });
+      this.snackBar.open("Purchase Successful", "OK", {
+        verticalPosition: "top",
+        duration: 3000
+      })
+
+    },
+    error => window.alert("purchase unsuccessful: 'One of the items is not in stock'"));
   }
 
 }

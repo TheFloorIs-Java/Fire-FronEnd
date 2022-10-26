@@ -21,6 +21,7 @@ export class ProductDetailsCardComponent implements OnInit {
 
   addToCart() {
     this.addToCartClick.emit();
+
   }
 
   /*

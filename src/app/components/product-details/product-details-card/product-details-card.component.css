@@ -44,3 +44,7 @@ img{
 .stats{
     font-weight: bolder;
 }
+
+.cart-btn, .review-btn{
+    background: #F26925;
+}

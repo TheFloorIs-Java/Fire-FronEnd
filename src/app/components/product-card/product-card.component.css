@@ -38,7 +38,7 @@
 }
 
 mat-card-header{
-    margin-bottom: 55px;
+    margin-bottom: 45px;
 }
 
 a{
@@ -46,9 +46,9 @@ a{
 }
 
 .img{
-    background: var(--bg-color);
+    background: white;
     min-height: 358px;
-    margin-top: 50px;
+    margin-top: 40px;
     color: var(--text-color);
 }
 
@@ -71,5 +71,8 @@ mat-card-content{
     align-content: space-between;
 }
 
+.bt{
+    border: 2px solid #F26925;
+}
 
 

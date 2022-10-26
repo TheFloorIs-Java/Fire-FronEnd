@@ -32,7 +32,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from '@angular/material/list';
 import { ProductDetailsCardComponent } from './components/product-details/product-details-card/product-details-card.component'; 
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog'; 
-import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         MatListModule,
         MatDialogModule,
         MatButtonToggleModule,
+        MatSnackBarModule
     ],
   providers: [{
     provide: MatDialogRef,

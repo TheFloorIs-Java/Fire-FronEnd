@@ -67,15 +67,6 @@ export class CartComponent implements OnInit {
 
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
   /**
    * this method deletes each individual item from the cart itself.
    * @param id the item selected to be deleted

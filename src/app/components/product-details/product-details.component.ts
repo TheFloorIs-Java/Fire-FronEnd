@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { Review } from 'src/app/models/review';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private pService: ProductService, 
     private route: ActivatedRoute, 
     private cService: CartService,
-    private rService: ReviewService) {
+    private rService: ReviewService, private snackBar: MatSnackBar) {
     this.route.queryParams.subscribe(data => {
       this.product_id = data['id']
     });
@@ -62,7 +63,11 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(product: Product) {
     this.cService.postCartToAPI(product).subscribe(data => {
       this.cService.setCartCountRef();
-    });
+      this.snackBar.open(`Added ${product.name}`, "OK", {
+        verticalPosition: "top",
+        duration: 3000
+      })
+    })
   }
 
   /**

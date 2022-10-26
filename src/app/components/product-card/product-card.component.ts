@@ -7,6 +7,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import {MatDialog} from "@angular/material/dialog";
 import {ReviewComponent} from "../review/review.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ProductCardComponent implements OnInit{
   @Input() productInfo!: Product;
 
 
-  constructor(private productService: ProductService, private router: Router, private cService: CartService, private dialog: MatDialog) { }
+  constructor(private productService: ProductService, private snackBar: MatSnackBar, private router: Router, private cService: CartService, private dialog: MatDialog) { }
   
   ngOnInit(): void {
     // this.subscription = this.cService.getCart().subscribe(
@@ -46,26 +47,13 @@ export class ProductCardComponent implements OnInit{
      */
 
   addToCart(product: Product): void {
-    /*let newCart: Cart = {
-      cartCount: 0,
-      products: [],
-      totalPrice: 0.00
-    };
-    newCart.products = this.products;
-    if (newCart.products.find(elem => elem.product.id === product.id)) {
-      console.log("Element found, updating quantity");
-      newCart.products[newCart.products.findIndex(elem => elem.product.id === product.id)].quantity++;
-    } else {
-      console.log("Element not found, adding to cart");
-      newCart.products.push({product: product, quantity: 1});
-    }
-    newCart.cartCount = this.cartCount + 1;
-    newCart.totalPrice = this.totalPrice + product.price;
-    this.cService.setCart(newCart);*/
-
     this.cService.postCartToAPI(product).subscribe(data => {
       console.log(data);
       this.cService.setCartCountRef();
+      this.snackBar.open(`Added ${product.name}`, "OK", {
+        verticalPosition: "top",
+        duration: 3000
+      })
     });
   }
 

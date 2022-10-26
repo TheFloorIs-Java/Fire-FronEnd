@@ -14,15 +14,15 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
     /**
-     * This method is used to get product objects from database 
+     * This method is used to get product objects from database
      * @return Observable<Product[]> This returns  array of product objects.
      */
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.baseUrl+this.productUrl, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
-  
+
    /**
-     * This method is used to get single product  object from database 
+     * This method is used to get single product  object from database
      * @param id This is the  parameter of getSingleProduct method
      * @return Observable<Product> This returns  product object.
      */
@@ -30,13 +30,6 @@ export class ProductService {
     return this.http.get<Product>(environment.baseUrl+ this.productUrl+id, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
-    /**
-     * This method is used to add purchase  object to database 
-     * @param products This is the  parameter of purchase method
-     * @return Observable<any> This returns  array of product objects.
-     */
-  public purchase(products: {id:number, quantity:number}[]): Observable<any> {
-    const payload = JSON.stringify(products);
-    return this.http.patch<any>(environment.baseUrl+this.productUrl, payload, {headers: environment.headers, withCredentials: environment.withCredentials})
-  }
+
+
 }

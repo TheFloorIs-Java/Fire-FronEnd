@@ -21,21 +21,21 @@
 
 <!-- Navigation Starts -->
 
-<mat-toolbar class="nav-bar">
-    <span>
+<mat-toolbar class="nav-bar" style="background: var(--bg-color);color: var(--text-color);">
+    <span >
         <img src="assets/images/rlogo.png">
         evature Swag Shop
     </span>
     <span class="example-spacer"></span>
-    <span>
+    <span style="color:black">
         <span><button mat-button class="product" [routerLink]="['/home']">Products</button></span>
         <span><button mat-button class="purchase" [routerLink]="['/purchase-history']">Purchases</button></span>
         <span><button mat-button class="cart" [routerLink]="['/cart']">Cart {{cartCount}}</button></span>
         <span><button mat-button class="logout" (click)="logout()">Logout</button></span>
       <!--  <span class="darkmode"><mat-slide-toggle [checked]="darkMode" (click)="toggleTheme()"> {{ this.mode }} </mat-slide-toggle></span>  -->
-        <span style="margin:8px"><mat-slide-toggle [(ngModel)]="mode" class="darkMode"  (change)="toggleTheme()">  {{mode}}
+    </span>  <span style="margin:8px"><mat-slide-toggle [(ngModel)]="mode" class="darkMode"  (change)="toggleTheme()">  {{mode}}
 </mat-slide-toggle> </span> 
-    </span>
+   
 </mat-toolbar>
 
 

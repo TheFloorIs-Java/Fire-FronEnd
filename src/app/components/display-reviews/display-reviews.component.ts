@@ -67,4 +67,40 @@ export class DisplayReviewsComponent implements OnInit {
       this.currentReviews =  this.allReviews.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
   }
 
+  /*
+  * Assign a 'checked' class to each star for the number of stars for a review.
+  */
+ starChecking(score: number) {
+  
+ }
+
+
+
+}
+
+@Component({
+  selector: 'review-stars',
+  template: `
+    <span *ngFor="let n of arrNums"
+           [className]="'fa fa-star ' + isStar(n)"></span>`,
+    // <span class="fa fa-star checked"></span>
+    // <span class="fa fa-star checked"></span>
+    // <span class="fa fa-star checked"></span>
+    // <span class="fa fa-star"></span>
+    // <span class="fa fa-star"></span>`,
+  styleUrls: ['./display-reviews.component.css']
+})
+export class ReviewStarsComponent {
+
+  @Input()
+  score: number = Math.random() * 5 + 1;
+
+  arrNums: number[] = [1, 2, 3, 4, 5];
+
+  /*
+  * Return 'checked' if current iteration is greater than or equal to score; otherwise ''
+  */
+  isStar(n: number): string {
+    return n <= this.score ? 'checked' : '';
+  }
 }

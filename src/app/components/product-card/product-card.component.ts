@@ -5,6 +5,8 @@ import { Cart1 } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ReviewComponent} from "../review/review.component";
 
 
 @Component({
@@ -23,13 +25,7 @@ export class ProductCardComponent implements OnInit{
   totalPrice: number = 0;
   @Input() productInfo!: Product;
 
-    /**
-     * This constructor is used to inject  ProductService, Router  and CartService
-     * @param productService This is the first parameter to constructor method
-     * @param router This is the second parameter to constructor method
-     * @param cService This is the third parameter to constructor method
-     * @return Nothing.
-     */
+
   constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
   
   ngOnInit(): void {
@@ -94,6 +90,15 @@ export class ProductCardComponent implements OnInit{
      */
   goToProductDetail(productInfo: Product) {
     this.router.navigate(['/product'], {queryParams: {id: productInfo.id}});
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ReviewComponent, {
+      width: 'auto',
+      height: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 

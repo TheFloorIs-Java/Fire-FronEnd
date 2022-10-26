@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   displayedColumns: string[] = ['name', 'quantity', 'total_price'];
   dataSource!: MatTableDataSource<Cart1>;
   cart!: Cart1[];
+  total: number  =0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -54,6 +55,10 @@ export class CartComponent implements OnInit {
           case 'total_price': return cart.total_price;
           default: return cart.product;
         }
+      }
+      for (let crt of cart ){
+        // @ts-ignore
+        this.total +=  crt.total_price;
       }
     });
   }
@@ -98,5 +103,4 @@ export class CartComponent implements OnInit {
       this.router.navigate(["/home"]);
     })
   }
-
 }

@@ -36,12 +36,25 @@ export class CheckoutComponent implements OnInit {
     country: new UntypedFormControl('', Validators.required)
   });
 
+
+  /**
+     * This constructor is used to inject  Router, CartService and PurchaseService
+     * @param router This is the first parameter to constructor method
+     * @param cService This is the second parameter to constructor method
+     * @param purchase This is the third parameter to constructor method
+     * @return Nothing.
+     */
   constructor( private router: Router, private cService: CartService, private purchase: PurchaseService) { }
 
   ngOnInit(): void {
     this.getCart();
   }
 
+
+  /**
+     * This method is used to get cart from database 
+     * @return Nothing
+    */
   getCart(){
     this.cService.getCartFromAPI().subscribe(cart =>{
       this.cart = cart;
@@ -52,7 +65,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-
+  /**
+     * This method is used to add purchase to database 
+     * @return Nothing
+    */
   onSubmit(): void {
     this.purchase.makePurchase().subscribe((cart) => {
       this.router.navigate(['/home']);

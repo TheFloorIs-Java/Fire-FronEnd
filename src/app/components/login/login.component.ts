@@ -15,12 +15,21 @@ export class LoginComponent implements OnInit {
     password: new UntypedFormControl('')
   })
   
-
+    /**
+     * This constructor is used to inject  AuthService and  Router
+     * @param authService This is the first parameter to constructor method
+     * @param router This is the second parameter to constructor method
+     * @return Nothing.
+     */
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  
+
+   /**
+     * This method is used to make user logining by email and password
+     * @return Nothing
+     */
   onSubmit(): void {
     this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(
       () => {
@@ -31,6 +40,10 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  /**
+     * This method is used to navigate to register component
+     * @return Nothing
+   */
   register(): void {
     this.router.navigate(['register']);
   }

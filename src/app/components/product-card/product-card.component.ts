@@ -23,7 +23,13 @@ export class ProductCardComponent implements OnInit{
   totalPrice: number = 0;
   @Input() productInfo!: Product;
 
-
+    /**
+     * This constructor is used to inject  ProductService, Router  and CartService
+     * @param productService This is the first parameter to constructor method
+     * @param router This is the second parameter to constructor method
+     * @param cService This is the third parameter to constructor method
+     * @return Nothing.
+     */
   constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
   
   ngOnInit(): void {
@@ -36,6 +42,12 @@ export class ProductCardComponent implements OnInit{
     // );
     this.subscription = this.cService.getCartCountRef().subscribe((count:number) => this.cartCount);
   }
+
+   /**
+     * This method is used to add cart to  database 
+     * @param product This is the  parameter of addToCart method
+     * @return Nothing.
+     */
 
   addToCart(product: Product): void {
     /*let newCart: Cart = {
@@ -61,7 +73,11 @@ export class ProductCardComponent implements OnInit{
     });
   }
 
-
+   /**
+     * This method is used to navigate to review by id 
+     * @param id This is the  parameter of addReview method
+     * @return Nothing.
+     */
   addReview(id:number){
     this.router.navigate(['review']);
 
@@ -70,7 +86,12 @@ export class ProductCardComponent implements OnInit{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
+   
+    /**
+     * This method is used to navigate to product details 
+     * @param productInfo This is the  parameter of goToProductDetail method
+     * @return Nothing.
+     */
   goToProductDetail(productInfo: Product) {
     this.router.navigate(['/product'], {queryParams: {id: productInfo.id}});
   }

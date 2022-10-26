@@ -25,6 +25,14 @@ export class DisplayReviewsComponent implements OnInit {
 
   currentReviews!: Review[];
   
+  /**
+     * This constructor is used to inject  HttpClient, ProductService, ActivatedRoute and ReviewService
+     * @param http This is the first parameter to constructor method
+     * @param pService This is the second parameter to constructor method
+     * @param route This is the third parameter to constructor method
+     * @param rService This is the fourth parameter to constructor method
+     * @return Nothing.
+  */
   constructor(private http: HttpClient,
     private pService: ProductService,
      private route: ActivatedRoute,
@@ -36,6 +44,10 @@ export class DisplayReviewsComponent implements OnInit {
     
     
   }
+    /**
+     * This method is used to get  review object from database by product
+     * @return Nothing
+     */
 
   ngOnInit(): void {
     this.rService.getReviewsForProduct(this.product_id)
@@ -47,7 +59,10 @@ export class DisplayReviewsComponent implements OnInit {
     // this.currentReviews = this.allReviews.slice(0, 5);
     
   }
-
+    /**
+     * This method is used to display  review in  page  according to page size
+     * @return Nothing
+     */
   onPageChange($event: any) {
       this.currentReviews =  this.allReviews.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
   }

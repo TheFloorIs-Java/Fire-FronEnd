@@ -14,22 +14,26 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-  // @Input()
-  // allReviews: Array<Review> = [];
+ 
   productInfo!: Product;
   user!: User;
   reviewInfo! : Review ;
-  // @Input()
-  // reviewInput : string ="";
-  // @Input()
-  // product_id:number = 0;
+  
   user_id : number = 0;
 
-  // @Input() postReview: boolean = false;
+  
   review!: Review;
   product!: Product;
   reviewString!: string;
-
+   
+  /**
+     * This constructor is used to inject  ReviewService, HttpClient, ActivatedRoute and MatDialogRef
+     * @param rService This is the first parameter to constructor method
+     * @param http This is the second parameter to constructor method
+     * @param router This is the third parameter to constructor method
+     * @param dialogRef This is the fourth parameter to constructor method
+     * @return Nothing.
+     */
   constructor(private rService: ReviewService, 
     private http: HttpClient, 
     private router: ActivatedRoute,
@@ -42,15 +46,18 @@ export class ReviewComponent implements OnInit {
    }
 
   ngOnInit(): void {}
-
+   
+    /**
+     * This method is used to add review object to database 
+     * @return Nothing
+     */
   addReview() {
     console.log(this.reviewString);
     this.review = new Review(this.product, this.reviewString);
-    // this.review.product = this.product;
-    // this.review.review = this.reviewString;
+   
     console.log(this.review);
     this.rService.addReview(this.review).subscribe(data => console.log(data));
-    // console.log(this.review);
+   
     location.reload();
   }
  

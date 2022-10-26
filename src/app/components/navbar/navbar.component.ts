@@ -19,6 +19,14 @@ export class NavbarComponent implements OnInit, OnChanges{
   @Input() darkMode!: boolean //for dark mode toggle button
   mode: string = "Mode"
   @Input() addItem!: number;
+
+    /**
+     * This constructor is used to inject  AuthService, Router and  CartService
+     * @param authService This is the first parameter to constructor method
+     * @param router This is the second parameter to constructor method
+     * @param cService This is the third parameter to constructor method
+     * @return Nothing.
+     */
   constructor(private authService: AuthService, private router: Router,  private cService: CartService) {//private productService: ProductService,
                 //this.detectColorScheme
       this.subscription = this.cService.getCartCount().subscribe(
@@ -54,7 +62,10 @@ export class NavbarComponent implements OnInit, OnChanges{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
+    /**
+     * This method is used to log out and navigate to login componenet
+     * @return Nothing
+     */
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);
@@ -68,6 +79,13 @@ export class NavbarComponent implements OnInit, OnChanges{
   //     document.documentElement.setAttribute('data-theme',this.darkMode? 'dark':'light');
   //   }
   // }
+
+
+  
+    /**
+     * This method is used to change from regular mode to dark mode
+     * @return Nothing
+     */
   toggleTheme(){
     this.darkMode= !this.darkMode;
     

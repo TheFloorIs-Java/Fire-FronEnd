@@ -18,13 +18,21 @@ export class PurchaseHistoryComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
+   
+  /**
+     * This constructor is used to inject  PurchaseService 
+     * @param purchaseService This is the first parameter to constructor method
+     * @return Nothing.
+     */
   constructor(private  purchaseService: PurchaseService) { }
 
   ngOnInit(): void {
     this.getPurchases();
   }
-
+    /**
+     * This method is used to add purchase object to database 
+     * @return Nothing
+     */
   getPurchases(){
     this.purchaseService.getPurchases().subscribe(purchases => {
       this.purchases = purchases;

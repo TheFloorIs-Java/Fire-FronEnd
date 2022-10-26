@@ -21,11 +21,21 @@ export class ReviewService {
     this.endpointURL = "/review";
   }
 
+   /**
+     * This method is used to add review  object to database 
+     * @param review This is the  parameter of addReview method
+     * @return Observable<Review> This returns  review object.
+     */
   addReview(review: Review): Observable<Review> {
     return this.http.post<Review>(environment.baseUrl+this.endpointURL, review,
       {headers: environment.headers, withCredentials: environment.withCredentials});
   }
   
+   /**
+     * This method is used to get review  objects from database 
+     * @param product_id This is the parameter of getReviewsForProduct method
+     * @return Observable<Review[]> This returns  array of review objects.
+     */
   getReviewsForProduct(product_id: number): Observable<Review[]> {
     return this.http.get<Review[]>(environment.baseUrl+this.endpointURL+"/"+product_id,
       {headers: environment.headers, withCredentials: environment.withCredentials});

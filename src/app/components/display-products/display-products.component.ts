@@ -10,8 +10,18 @@ import { ProductService } from 'src/app/services/product.service';
 export class DisplayProductsComponent implements OnInit {
 
   allProducts: Product[] = [];
-
+  
+  /**
+     * This constructor is used to inject   ProductService
+     * @param productService This is the first parameter to constructor method
+     * @return Nothing.
+     */
   constructor(private productService: ProductService) { }
+   
+  /**
+     * This method is used to get products from database 
+     * @return Nothing
+    */
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(

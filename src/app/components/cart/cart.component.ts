@@ -20,6 +20,14 @@ export class CartComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+
+  /**
+     * This constructor is used to inject  ProductService, Router and CartService
+     * @param productService This is the first parameter to constructor method
+     * @param router This is the second parameter to constructor method
+     * @param cService This is the third parameter to constructor method
+     * @return Nothing.
+   */
   constructor(private productService: ProductService, private router: Router, private cService: CartService) {
 
   }
@@ -27,7 +35,11 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.getCartItem();
   }
-
+  
+   /**
+     * This method is used to cart object from database 
+     * @return Nothing
+   */
   getCartItem(){
     this.cService.getCartFromAPI().subscribe(cart => {
       this.dataSource = new MatTableDataSource<Cart1>(cart);
@@ -60,8 +72,9 @@ export class CartComponent implements OnInit {
   }
 
   /**
-   * this function deletes each individual item from the cart itself.
+   * this method deletes each individual item from the cart itself.
    * @param id the item selected to be deleted
+   * @return Nothing
    */
   deleteItem(id: number) {
     this.cService.deleteCartItems(id).subscribe(() => {
@@ -75,7 +88,10 @@ export class CartComponent implements OnInit {
     })
   }
 
- 
+ /**
+   * this method deletes cart items form database.
+   * @return Nothing
+   */
   emptyCart() {
     this.cService.deleteAllCartItems().subscribe(() => {
       this.cService.setCartCountRef();

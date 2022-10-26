@@ -26,7 +26,7 @@ export class ProductCardComponent implements OnInit{
   @Input() productInfo!: Product;
 
 
-  constructor(private productService: ProductService, private router: Router, private cService: CartService) { }
+  constructor(private productService: ProductService, private router: Router, private cService: CartService, private dialog: MatDialog) { }
   
   ngOnInit(): void {
     // this.subscription = this.cService.getCart().subscribe(
